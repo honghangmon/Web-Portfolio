@@ -1,10 +1,8 @@
 package com.yoonjun.portfolio.domain.guestbook.dto;
 
-public class DeleteEntryRequest {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-}
+public record DeleteEntryRequest(
+        @NotBlank @Size(min = 4, max = 50) String password
+) {}
