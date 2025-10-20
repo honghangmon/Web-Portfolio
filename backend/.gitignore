@@ -1,0 +1,3 @@
+src/main/resources/application-local.yml
+/build/
+.DS_Store
