@@ -1,0 +1,263 @@
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #e5e7eb;
+    background: radial-gradient(1200px 800px at 20% 10%, #101010 0%, rgba(20, 21, 22, 0) 60%),
+                radial-gradient(900px 600px at 80% 30%, #0f0f10 0%, rgba(28, 30, 32, 0) 55%),
+                linear-gradient(135deg, #0b0f19 0%, #111827 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 헤더 바 */
+.header-bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* 좌측 여백, 제목, 우측 버튼 */
+    align-items: center;
+    gap: 12px;
+}
+
+.header-bar h1 {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+}
+
+.header-add-btn {
+    grid-column: 3;
+    justify-self: end;
+    white-space: nowrap;
+}
+
+/* 배경 포스트잇 월 - Masonry Columns */
+.entries-wall {
+    position: fixed;
+    inset: 0;
+    padding: var(--wall-top, 110px) 24px 120px 24px; /* 헤더 높이에 맞춰 상단 여백 */
+    column-count: 4;
+    column-gap: 22px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 카드가 컬럼 안에서 자연스럽게 쌓이도록 */
+.entries-wall .guestbook-entry {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 22px 0;
+}
+
+/* 반응형 컬럼 수 */
+@media (max-width: 1200px) { .entries-wall { column-count: 3; } }
+@media (max-width: 900px) { .entries-wall { column-count: 2; } }
+@media (max-width: 600px) { .entries-wall { column-count: 1; } }
+
+/* 컨테이너는 위 레이어로 */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+header {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #e5e7eb;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+/* 메인 컨텐츠 - 투명 카드 느낌 제거 */
+main {
+    background: transparent;
+    border-radius: 0;
+    padding: 20px;
+    box-shadow: none;
+}
+
+/* 폼/상단 버튼 영역 */
+.guestbook-form {
+    margin-bottom: 8px;
+    padding-bottom: 0;
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+}
+
+/* 버튼, 폼 등 이하 기존 스타일 유지 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #374151;
+    background: #111827;
+    color: #e5e7eb;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #818cf8;
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.18);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #808080 100%);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(231, 232, 251, 0.45);
+}
+
+.btn-secondary { background: #374151; color: #e5e7eb; }
+.btn-secondary:hover { background: #4b5563; }
+
+/* 포스트잇 카드 (변수 기반, 배경 월용) */
+.guestbook-entry {
+    background: var(--note-bg, #fff8a3);
+    border: 1px solid var(--note-border, #f2e28a);
+    border-radius: 8px;
+    padding: 16px 14px 14px 14px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255,255,255,0.25);
+    transform: rotate(var(--rot, -0.5deg));
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    pointer-events: auto; /* 카드와 버튼은 클릭 가능 */
+}
+
+.guestbook-entry::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 14px;
+    background: var(--tape, #ffd6d6);
+    border-radius: 2px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+.entry-name { color: #111827; }
+.entry-date { color: #374151; }
+.entry-message { color: #1f2937; }
+
+/* 모달, 반응형 등 기존 규칙 유지 */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; justify-content: center; align-items: center; padding: 20px; z-index: 1000; }
+.modal-overlay.active { display: flex; }
+.modal { background: #111827; color: #e5e7eb; width: 100%; max-width: 520px; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden; animation: modalIn 0.2s ease-out; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #0b1220; color: #e5e7eb; }
+.modal-close { background: transparent; border: none; color: #e5e7eb; font-size: 22px; line-height: 1; cursor: pointer; }
+.modal-body { padding: 20px 18px 16px 18px; }
+.modal-footer { display: flex; gap: 10px; justify-content: flex-end; padding: 0 18px 18px 18px; }
+@keyframes modalIn { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* 삭제 버튼 */
+.delete-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #392e2e; /* red-500 */
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.delete-btn:hover {
+    background: #9d9d9d; /* red-600 */
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.32);
+}
+
+.delete-btn:focus-visible {
+    outline: 2px solid #fecaca; /* red-200 */
+    outline-offset: 2px;
+}
+
+/* 모달 취소 버튼 - 중립 테두리형 스타일 */
+.modal-footer .btn-secondary {
+    background: transparent;
+    color: #e5e7eb;
+    border: 2px solid #6b7280; /* gray-500 */
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background: #1f2937; /* gray-800 */
+    border-color: #9ca3af; /* gray-400 */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transform: translateY(-1px);
+}
+
+.modal-footer .btn-secondary:focus-visible {
+    outline: 2px solid #a5b4fc; /* indigo-200 */
+    outline-offset: 2px;
+}
+
+.modal-footer .btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .container { padding: 10px; }
+    main { padding: 12px; }
+    header h1 { font-size: 2rem; }
+}
