@@ -1,11 +1,11 @@
 export class Navbar {
   constructor() {
     this.navItems = [
-      { href: '#/', label: 'Home', icon: '🏠' },
-      { href: '#/about', label: 'About', icon: '👨‍💻' },
-      { href: '#/work', label: 'Work', icon: '💼' },
-      { href: '#/guestbook', label: 'Guestbook', icon: '📝' },
-      { href: '#/contact', label: 'Contact', icon: '📧' }
+      { href: '#/', label: 'Home'},
+      { href: '#/about', label: 'About Me'},
+      { href: '#/work', label: 'Work'},
+      { href: '#/guestbook', label: 'Guestbook' },
+      { href: '#/contact', label: 'Contact Me'}
     ]
   }
 
@@ -21,7 +21,6 @@ export class Navbar {
           ${this.navItems.map(item => `
             <li class="navbar-item">
               <a href="${item.href}" class="navbar-link" data-route="${item.href}">
-                <span class="navbar-icon">${item.icon}</span>
                 <span class="navbar-label">${item.label}</span>
               </a>
             </li>

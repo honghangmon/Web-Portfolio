@@ -15,6 +15,7 @@ export class Router {
       '#/contact': Contact
     }
     this.currentPage = null
+    this.loadedStyles = new Set()
   }
 
   init() {
@@ -37,11 +38,29 @@ export class Router {
       
       // 새 페이지 렌더링
       this.currentPage = new PageComponent()
+      this.loadPageStyles(hash)
       this.render()
     } else {
       // 404 처리
       this.render404()
     }
+  }
+
+  loadPageStyles(hash) {
+    const pageName = hash.replace('#/', '') || 'home'
+    const styleId = `page-${pageName}-style`
+    
+    // 이미 로드된 스타일이면 스킵
+    if (this.loadedStyles.has(styleId)) return
+    
+    // CSS 파일 동적 로드
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = `/src/styles/pages/${pageName}.css`
+    link.id = styleId
+    
+    document.head.appendChild(link)
+    this.loadedStyles.add(styleId)
   }
 
   render() {

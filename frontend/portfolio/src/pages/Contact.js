@@ -3,7 +3,7 @@ export class Contact {
     return `
       <main class="page contact-page">
         <section class="contact-hero">
-          <h1>Get In Touch</h1>
+          <h1>Contact Me</h1>
           <p>새로운 프로젝트나 협업에 대해 이야기하고 싶으시다면 언제든 연락주세요</p>
         </section>
 
@@ -15,21 +15,14 @@ export class Contact {
                 <div class="contact-icon">📧</div>
                 <div class="contact-details">
                   <h3>Email</h3>
-                  <p>your.email@example.com</p>
+                  <p>wnsdl0604@naver.com</p>
                 </div>
               </div>
               <div class="contact-method">
                 <div class="contact-icon">📱</div>
                 <div class="contact-details">
                   <h3>Phone</h3>
-                  <p>+82 10-1234-5678</p>
-                </div>
-              </div>
-              <div class="contact-method">
-                <div class="contact-icon">📍</div>
-                <div class="contact-details">
-                  <h3>Location</h3>
-                  <p>Seoul, South Korea</p>
+                  <p>+82 010-6850-5951</p>
                 </div>
               </div>
             </div>
@@ -41,7 +34,7 @@ export class Contact {
                   <span class="social-icon">💼</span>
                   <span>LinkedIn</span>
                 </a>
-                <a href="#" class="social-link" target="_blank">
+                <a href="https://github.com/honghangmon" class="social-link" target="_blank">
                   <span class="social-icon">🐙</span>
                   <span>GitHub</span>
                 </a>
@@ -51,29 +44,6 @@ export class Contact {
                 </a>
               </div>
             </div>
-          </div>
-
-          <div class="contact-form">
-            <h2>메시지 보내기</h2>
-            <form id="contactForm" class="form">
-              <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="subject">제목</label>
-                <input type="text" id="subject" name="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="message">메시지</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">메시지 보내기</button>
-            </form>
           </div>
         </section>
       </main>

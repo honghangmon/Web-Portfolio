@@ -3,7 +3,7 @@ export class Work {
     this.projects = [
       {
         id: 1,
-        title: "E-commerce Platform",
+        title: "Trivese",
         description: "React와 Node.js를 활용한 온라인 쇼핑몰 플랫폼",
         image: "🛒",
         tech: ["React", "Node.js", "MongoDB", "Stripe"],
@@ -13,7 +13,7 @@ export class Work {
       },
       {
         id: 2,
-        title: "Task Management App",
+        title: "Good Dog",
         description: "팀 협업을 위한 프로젝트 관리 도구",
         image: "📋",
         tech: ["Vue.js", "Firebase", "CSS3"],
@@ -23,10 +23,10 @@ export class Work {
       },
       {
         id: 3,
-        title: "Weather Dashboard",
+        title: "Rensdeveiws",
         description: "실시간 날씨 정보를 제공하는 대시보드",
         image: "🌤️",
-        tech: ["JavaScript", "API", "Chart.js"],
+        tech: ["Vue.js", "API", "Chart.js"],
         github: "#",
         demo: "#",
         featured: false
@@ -38,8 +38,7 @@ export class Work {
     return `
       <main class="page work-page">
         <section class="work-hero">
-          <h1>My Work</h1>
-          <p>창의적이고 실용적인 웹 프로젝트들</p>
+          <h1>Projects</h1>
         </section>
 
         <section class="projects">

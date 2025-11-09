@@ -1,0 +1,5 @@
+/* 페이지 공통 스타일 */
+.page {
+  min-height: 100vh;
+  padding-top: 70px; /* 네비게이션 바 높이만큼 */
+}
