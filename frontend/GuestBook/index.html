@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 배경 포스트잇 월 -->
+    <div id="guestbookEntries" class="entries-wall" aria-hidden="false"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-bar">
+                <h1>방명록</h1>
+                <button type="button" id="openGuestbookModal" class="submit-btn header-add-btn">방명록 쓰기</button>
+            </div>
+            <p>소중한 인연들이 남긴 따뜻한 메시지</p>
+        </header>
+
+        <main>
+            <!-- 헤더로 버튼 이동 완료 -->
+        </main>
+    </div>
+
+    <!-- 모달 오버레이 & 대화상자 -->
+    <div id="guestbookOverlay" class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="guestbookModalTitle">
+            <div class="modal-header">
+                <h3 id="guestbookModalTitle">방명록 작성</h3>
+                <button type="button" class="modal-close" id="closeGuestbookModal" aria-label="닫기">×</button>
+            </div>
+            <form id="guestbookForm" class="modal-body">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required placeholder="이름을 입력해주세요">
+                </div>
+                <div class="form-group">
+                    <label for="message">메시지</label>
+                    <textarea id="message" name="message" required placeholder="소중한 메시지를 남겨주세요" rows="4"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="cancelGuestbookModal">취소</button>
+                    <button type="submit" class="submit-btn">확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
