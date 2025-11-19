@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://portfolio-mysql:3306/portfolio?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: portfolio
+    password: portfolio_pw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # 운영 안정화 후에는 none 으로 바꾸는 걸 추천
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace

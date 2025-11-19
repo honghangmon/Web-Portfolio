@@ -39,8 +39,8 @@ replay_pid*
 # Logs & secrets
 *.log
 .env
-application-*.yml
-application-*.properties
+application-local.yml
+
 
 # Keep Gradle/Maven wrappers tracked
 !gradle/wrapper/gradle-wrapper.jar
