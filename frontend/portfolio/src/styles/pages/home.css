@@ -1,357 +1,333 @@
-/* Home 페이지 전용 스타일 */
-.home-page {
-  padding: 2rem;
+/* Sophisticated Theme Variables */
+:root {
+  --bg-color: #0a0a0a;
+  --text-primary: #f5f5f5;
+  --text-secondary: #888888;
+  --accent-color: #d4af37;
+  /* Muted Gold */
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
-/* Ask Why 섹션 */
-.ask-why {
-  text-align: center;
-  padding: 6rem 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border-radius: var(--radius-lg);
-  margin-bottom: 4rem;
+/* Global Reset & Base Styles */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
 }
 
-.ask-why-title {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@font-face {
+  font-family: 'Cafe24Decoshadow';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Decoshadow.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
 }
 
-.ask-why-subtitle {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.ask-why-description {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.ask-why-description p {
-  margin-bottom: 1rem;
+body {
+  background-color: #0a0a0a;
   color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.ask-why-description .highlight {
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: 1.2rem;
+.page.home-page {
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* Who Am I 섹션 */
-.who-am-i {
-  margin-bottom: 4rem;
-}
-
-.who-am-i h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: var(--text-primary);
-}
-
-.profile-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.profile-avatar {
-  font-size: 6rem;
-  flex-shrink: 0;
-}
-
-.profile-info h3 {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.profile-name {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.profile-intro {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-}
-
-.profile-stats {
-  display: flex;
-  gap: 2rem;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-/* Skills 섹션 */
-.skills {
-  margin-bottom: 4rem;
-}
-
-.skills h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: var(--text-primary);
-}
-
-.skills-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 3rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.skill-category h3 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.skill-items {
+/* Section 1: Slogan Section */
+.slogan-section {
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.skill-item {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-}
-
-.skill-name {
-  min-width: 100px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.skill-level {
-  flex: 1;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  position: relative;
   overflow: hidden;
+  padding: 0 2rem;
+  background-color: #000;
+  /* Ensure deep black background */
 }
 
-.skill-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
-
-/* Projects Preview 섹션 */
-.projects-preview {
-  margin-bottom: 4rem;
-}
-
-.projects-preview h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: var(--text-primary);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.project-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.project-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.project-card h3 {
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.project-card p {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.tech-tag {
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--primary-color);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius);
-  font-size: 0.8rem;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-}
-
-.projects-cta {
-  text-align: center;
-}
-
-/* Hobbies 섹션 */
-.hobbies {
-  margin-bottom: 4rem;
-}
-
-.hobbies h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: var(--text-primary);
-}
-
-.hobbies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hobby-item {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.hobby-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.hobby-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hobby-item h3 {
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.hobby-item p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* CTA 섹션 */
-.cta {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 4rem 2rem;
-}
-
-.cta h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.cta p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
+.animation-container {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  position: relative;
+  z-index: 1;
   margin-bottom: 2rem;
-}
-
-.cta-actions {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
+  /* Center content horizontally */
+  align-items: center;
+  /* Center content vertically if needed */
 }
 
-/* 반응형 */
-@media (max-width: 768px) {
-  .ask-why-title {
-    font-size: 2.5rem;
-  }
-  
-  .profile-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-  }
-  
-  .profile-stats {
-    justify-content: center;
-  }
-  
-  .skills-categories {
-    grid-template-columns: 1fr;
-  }
-  
-  .hobbies-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  
-  .cta-actions {
-    flex-direction: column;
-    align-items: center;
+.character-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.character-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  mix-blend-mode: screen;
+  opacity: 0;
+  /* Start hidden for entrance */
+  animation:
+    float 3s ease-in-out infinite,
+    turnOnLight 1.5s ease-out forwards,
+    /* Entrance: Light bulb turning on */
+    twinkle 4s ease-in-out infinite 1.5s;
+  /* Continuous: Twinkle after entrance */
+  display: block;
+  /* Remove inline spacing */
+}
+
+.slogan-container {
+  text-align: center;
+  z-index: 2;
+  /* Opacity controlled by GSAP */
+}
+
+.slogan-word {
+  display: inline-block;
+  /* Required for transform animations */
+}
+
+.main-slogan {
+  font-family: var(--font-sans);
+  /* Use Sans for modern look */
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 3.5s;
+}
+
+.scroll-text {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--text-secondary), transparent);
+}
+
+/* Animations */
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
   }
 }
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes turnOnLight {
+  0% {
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0)) brightness(0);
+  }
+
+  10% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)) brightness(0.5);
+  }
+
+  20% {
+    opacity: 0.2;
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0)) brightness(0.2);
+  }
+
+  30% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)) brightness(0.8);
+  }
+
+  40% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.1)) brightness(0.4);
+  }
+
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) brightness(1.2);
+  }
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) brightness(1.2);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)) brightness(1);
+  }
+}
+
+/* =========================================
+   Section 2: Self-Introduction
+   ========================================= */
+.intro-section {
+  height: 100vh;
+  /* Full viewport height for pinning */
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Reset margins to avoid layout issues with pinning */
+  margin: 0;
+  padding: 100px 0;
+  /* Add padding if needed */
+}
+
+.intro-sticky-wrapper {
+  font-family: 'Pretendard';
+  font-size: 80px;
+  line-height: 1.2;
+  /* Remove CSS sticky, let GSAP handle it */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-sticky-wrapper .mask {
+  display: block;
+}
+
+.intro-sticky-wrapper .mask .text span {
+  -webkit-text-fill-color: rgba(22, 22, 22, 0.1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 100% 0%;
+  /* Start with 0 height */
+  background-position: bottom;
+  /* Anchor to bottom */
+}
+
+/* Individual Gradients - Vertical */
+.intro-sticky-wrapper .mask .text .line-1 {
+  background-image: linear-gradient(to top, #ffffff, #ffffff);
+}
+
+.intro-sticky-wrapper .mask .text .line-2 {
+  background-image: linear-gradient(to top, #eb2424, #eb2424);
+  /* Red */
+}
+
+.intro-sticky-wrapper .mask .text .line-3 {
+  background-image: linear-gradient(to top, #2be268, #2be268);
+  /* Green */
+}
+
+.intro-sticky-wrapper .mask .text .line-4 {
+  background-image: linear-gradient(to top, #ffd700, #ffd700);
+  /* Yellow */
+}
+
+.intro-sticky-wrapper .mask .text .line-5 {
+  background-image: linear-gradient(to top, #4da6ff, #4da6ff);
+  /* Blue */
+}
+
+.intro-sticky-wrapper .mask .text .line-6-name {
+  background-image: linear-gradient(to top, #c1ffff, #c1ffff);
+  /* font-family: 'cafe24decoshadow'; */
+  /* Teal/Cyan */
+}
+
+.intro-sticky-wrapper .mask .text .line-6-suffix {
+  background-image: linear-gradient(to top, #ffffff, #ffffff);
+}
+
+
+
+/* .text,
+.text2,
+.text3,
+.text4,
+.text5 {
+  font-family: 'Pretendard';
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+} */
+
+/* Specific Colors */
+.text2 {
+  color: #ff4d4d;
+}
+
+/* Red */
+.text3 {
+  color: #4dff88;
+}
+
+/* Green */
+.text4 {
+  color: #ffd700;
+}
+
+/* Yellow */
+/* text1 and text5 use default white */
