@@ -300,6 +300,82 @@ body {
   background-image: linear-gradient(to top, #ffffff, #ffffff);
 }
 
+/* Skills Section */
+.skills-section {
+  height: 100vh;
+  background-color: #0a0a0a;
+  position: relative;
+  /* Ensure it stacks correctly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skills-mask {
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  font-family: 'Pretendard';
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.skills-text {
+  display: block;
+}
+
+.skills-text span {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  /* Start with 0 width */
+  background-position: left;
+  /* Anchor to left */
+}
+
+.skills-line-1 {
+  background-image: linear-gradient(to right, #ffffff, #ffffff);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 80%;
+  max-width: 900px;
+  margin-top: 400px;
+  /* Space for the title */
+  z-index: 1;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  /* Square cards */
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.skill-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 
 /* .text,

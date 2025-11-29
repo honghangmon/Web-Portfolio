@@ -43,6 +43,31 @@ export class Home {
             </span>
           </div>
         </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+          <span class="skills-mask">
+            <span class="skills-text">
+              <span class="skills-line-1">SKILLS</span>
+            </span>
+          </span>
+          
+          <div class="skills-grid">
+            <!-- Skill Cards 1-12 -->
+            <div class="skill-card"><img src="/src/assets/skill-1.png" alt="Skill 1" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-2.png" alt="Skill 2" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-3.png" alt="Skill 3" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-4.png" alt="Skill 4" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-5.png" alt="Skill 5" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-6.png" alt="Skill 6" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-7.png" alt="Skill 7" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-8.png" alt="Skill 8" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-9.png" alt="Skill 9" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-10.png" alt="Skill 10" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-11.png" alt="Skill 11" /></div>
+            <div class="skill-card"><img src="/src/assets/skill-12.png" alt="Skill 12" /></div>
+          </div>
+        </section>
       </main>
       `
   }
@@ -98,57 +123,7 @@ export class Home {
         delay: 0.5
       })
 
-    // // 2. Self-Introduction Sticky Scroll Sequence
-
-    // // Initial State: Hide all text elements
-    // gsap.set(".intro-text", { autoAlpha: 0 });
-
-    // // Create Timeline
-    // const introTl = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".intro-section",
-    //     pin: true,           // Pin the section
-    //     start: "top top",    // Start when section hits top
-    //     end: "+=4000",       // Scroll distance
-    //     scrub: 1,            // Smooth scrubbing
-    //   }
-    // });
-
-    // // Sequence 1: "안녕하십니까!" (Center)
-    // introTl.fromTo(".text-1",
-    //   { autoAlpha: 0, y: 50 },
-    //   { autoAlpha: 1, y: 0, duration: 1 }
-    // )
-    //   .to(".text-1", { autoAlpha: 0, y: -50, duration: 1 }, "+=1"); // Stay then disappear
-
-    // // Sequence 2: "재밌고" (Left Top)
-    // introTl.fromTo(".text-2",
-    //   { autoAlpha: 0, x: -300, y: -50 },
-    //   { autoAlpha: 1, x: -100, y: -50, duration: 1 }
-    // )
-    //   .to([".text-2"], { autoAlpha: 0, duration: 1 }, "+=1");
-
-    // // Sequence 2: "흥미로운" (Right Bottom)
-    // introTl.fromTo(".text-3",
-    //   { autoAlpha: 0, x: 300, y: 50, scale: 0.8 },
-    //   { autoAlpha: 1, x: 100, y: 50, scale: 1, duration: 1 }
-    // )
-    //   .to(".text-3", { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=1");
-
-
-    // // Sequence 3: "경험을 선사하는 개발자" (Center Yellow)
-    // introTl.fromTo(".text-4",
-    //   { autoAlpha: 0, scale: 0.8 },
-    //   { autoAlpha: 1, scale: 1, duration: 1 }
-    // )
-    //   .to(".text-4", { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=1");
-
-    // // Sequence 4: "Yoon Jun 입니다" (Center White) - Final State
-    // introTl.fromTo(".text-5",
-    //   { autoAlpha: 0, y: 50 },
-    //   { autoAlpha: 1, y: 0, duration: 1 }
-    // );
-
+    //section 2 
     gsap.registerPlugin(ScrollTrigger);
 
     const tl = gsap.timeline({
@@ -169,5 +144,30 @@ export class Home {
       stagger: 0.5,
       ease: 'power3.out'
     });
+
+    // 3. Skills Section Animation (Left to Right Fill)
+    // 1. 타임라인 생성 (변수에 담기!)
+    const skillsTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.skills-section',
+        start: 'top 80%',
+        end: 'center center',
+        scrub: 1,
+        markers: true
+      }
+    });
+
+    // 2. 생성한 타임라인에 애니메이션 추가
+    skillsTl.fromTo('.skills-text span',
+      {
+        'background-size': '0% 100%'
+      },
+      {
+        'background-size': '100% 100%',
+        stagger: 0.5,
+        ease: 'none' // scrub을 쓸 때는 보통 none을 씁니다 (스크롤 속도 그대로 따라가게)
+      }
+    );
+
   }
 }
