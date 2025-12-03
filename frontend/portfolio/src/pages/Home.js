@@ -164,7 +164,21 @@ export class Home {
             <li>Photoshop <img src="/src/assets/sk12.png" alt="HTML" /></li>
           </ul>
           </div>
-          
+        </section>
+
+        <section class="project-section">
+          <div class="project-container">
+            <h2>Projects</h2>
+            <div class="project-grid">
+              <div class="project-card">
+                <img src="/src/assets/project1.png" alt="Project 1" />
+                <div class="project-info">
+                  <h3>Project 1</h3>
+                  <p>Project description goes here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
       `
