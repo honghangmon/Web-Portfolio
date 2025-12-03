@@ -52,21 +52,119 @@ export class Home {
             </span>
           </span>
           
-          <div class="skills-grid">
-            <!-- Skill Cards 1-12 -->
-            <div class="skill-card"><img src="/src/assets/skill-1.png" alt="Skill 1" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-2.png" alt="Skill 2" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-3.png" alt="Skill 3" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-4.png" alt="Skill 4" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-5.png" alt="Skill 5" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-6.png" alt="Skill 6" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-7.png" alt="Skill 7" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-8.png" alt="Skill 8" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-9.png" alt="Skill 9" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-10.png" alt="Skill 10" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-11.png" alt="Skill 11" /></div>
-            <div class="skill-card"><img src="/src/assets/skill-12.png" alt="Skill 12" /></div>
+          <div class="skills-container">
+            <!-- Skill Cards -->
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills1.png" alt="HTML" /></div>
+                <div class="card-back"><h3>HTML</h3><p>95%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills2.png" alt="CSS" /></div>
+                <div class="card-back"><h3>CSS</h3><p>95%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills3.png" alt="JS" /></div>
+                <div class="card-back"><h3>JS</h3><p>90%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills4.png" alt="React" /></div>
+                <div class="card-back"><h3>React</h3><p>85%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills5.png" alt="Next.js" /></div>
+                <div class="card-back"><h3>Next.js</h3><p>80%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills6.png" alt="TypeScript" /></div>
+                <div class="card-back"><h3>TS</h3><p>80%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills7.png" alt="Node.js" /></div>
+                <div class="card-back"><h3>Node.js</h3><p>75%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills8.png" alt="Python" /></div>
+                <div class="card-back"><h3>Python</h3><p>70%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills9.png" alt="Java" /></div>
+                <div class="card-back"><h3>Java</h3><p>70%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills10.png" alt="Spring" /></div>
+                <div class="card-back"><h3>Spring</h3><p>65%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills11.png" alt="MySQL" /></div>
+                <div class="card-back"><h3>MySQL</h3><p>75%</p></div>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="card-inner">
+                <div class="card-front"><img src="/src/assets/skills12.png" alt="AWS" /></div>
+                <div class="card-back"><h3>AWS</h3><p>60%</p></div>
+              </div>
+            </div>
           </div>
+        </section>
+
+        <section class="skills2-section">
+        <div class="textLoop">
+          <ul>
+            <li>JavaScript <img src="/src/assets/sk1.png" alt="HTML" /></li>
+            <li>TypeScript <img src="/src/assets/sk2.png" alt="HTML" /></li>
+            <li>React <img src="/src/assets/sk3.png" alt="HTML" /></li>
+            <li>Vue <img src="/src/assets/sk4.png" alt="HTML" /></li>
+            <li>Next.js <img src="/src/assets/sk5.png" alt="HTML" /></li>
+            <li>Java <img src="/src/assets/sk6.png" alt="HTML" /></li>
+            <li>JavaScript <img src="/src/assets/sk1.png" alt="HTML" /></li>
+            <li>TypeScript <img src="/src/assets/sk2.png" alt="HTML" /></li>
+            <li>React <img src="/src/assets/sk3.png" alt="HTML" /></li>
+            <li>Vue <img src="/src/assets/sk4.png" alt="HTML" /></li>
+            <li>Next.js <img src="/src/assets/sk5.png" alt="HTML" /></li>
+            <li>Java <img src="/src/assets/sk6.png" alt="HTML" /></li>
+          </ul>
+          </div>
+          <div class="card">
+          </div>
+          <div class="textLoop2">
+          <ul>
+          <li>Spring <img src="/src/assets/sk7.png" alt="HTML" /></li>
+            <li>MySQL <img src="/src/assets/sk8.png" alt="HTML" /></li>
+            <li>Figma <img src="/src/assets/sk9.png" alt="HTML" /></li>
+            <li>Git <img src="/src/assets/sk10.png" alt="HTML" /></li>
+            <li>Jira <img src="/src/assets/sk11.png" alt="HTML" /></li>
+            <li>Photoshop <img src="/src/assets/sk12.png" alt="HTML" /></li>
+            <li>Spring <img src="/src/assets/sk7.png" alt="HTML" /></li>
+            <li>MySQL <img src="/src/assets/sk8.png" alt="HTML" /></li>
+            <li>Figma <img src="/src/assets/sk9.png" alt="HTML" /></li>
+            <li>Git <img src="/src/assets/sk10.png" alt="HTML" /></li>
+            <li>Jira <img src="/src/assets/sk11.png" alt="HTML" /></li>
+            <li>Photoshop <img src="/src/assets/sk12.png" alt="HTML" /></li>
+          </ul>
+          </div>
+          
         </section>
       </main>
       `
@@ -160,10 +258,14 @@ export class Home {
     // 2. 생성한 타임라인에 애니메이션 추가
     skillsTl.fromTo('.skills-text span',
       {
-        'background-size': '0% 100%'
+        'background-size': '0% 100%',
+        x: -100,
+        opacity: 0,
       },
       {
         'background-size': '100% 100%',
+        x: 0,
+        opacity: 1,
         stagger: 0.5,
         ease: 'none' // scrub을 쓸 때는 보통 none을 씁니다 (스크롤 속도 그대로 따라가게)
       }

@@ -317,7 +317,7 @@ body {
   top: 100px;
   left: 50px;
   font-family: 'Pretendard';
-  font-size: 100px;
+  font-size: 80px;
   font-weight: 900;
   line-height: 1;
 }
@@ -327,6 +327,7 @@ body {
 }
 
 .skills-text span {
+  display: inline-block;
   -webkit-text-fill-color: rgba(255, 255, 255, 0.1);
   -webkit-background-clip: text;
   background-clip: text;
@@ -341,40 +342,127 @@ body {
   background-image: linear-gradient(to right, #ffffff, #ffffff);
 }
 
-.skills-grid {
+.skills-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  /* Force 6 columns */
   gap: 20px;
-  width: 80%;
-  max-width: 900px;
-  margin-top: 400px;
-  /* Space for the title */
+  width: 100%;
+  /* Ensure container takes full width */
+  max-width: 1600px;
+  /* Wide container for large cards */
+  margin: 150px auto 0;
+  padding: 0 40px;
   z-index: 1;
+  perspective: 2000px;
 }
 
+/* Remove old row styles */
+
+/* Flip Card Styles - Trendy Glassmorphism */
 .skill-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
+  width: 80%;
+  /* Fill grid cell */
+  height: 200px;
+  /* Taller cards */
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 짝수만 margin-top: 40px; */
+.skill-card:nth-child(even) {
+  margin-top: 40px;
+}
+
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-card:hover .card-inner {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1), 0 0 60px rgba(255, 255, 255, 0.05);
+  /* Glow effect */
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 1;
-  /* Square cards */
-  transition: transform 0.3s ease, background 0.3s ease;
+  overflow: hidden;
+  /* Keep content inside rounded corners */
 }
 
-.skill-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
+.card-front {
+  background: rgba(255, 255, 255, 0.03);
+  /* Ultra subtle glass */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  /* Stronger blur */
+  -webkit-backdrop-filter: blur(15px);
+  transition: border-color 0.3s ease;
+}
+
+.skill-card:hover .card-front {
   border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  color: white;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-back h3 {
+  font-family: 'Pretendard';
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-back p {
+  font-family: 'Pretendard';
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 300;
 }
 
 .skill-card img {
   width: 100%;
+  /* Slightly larger image */
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  /* Fill the card completely */
+  /*카드 하위의 모든 요소를 100%로 지정해도 꽉차지 않았던 이유
+  /* 비율을 유지하고 싶다면 object-fit: contain */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+  transition: transform 0.5s ease;
+}
+
+.skill-card:hover img {
+  transform: scale(1.1);
+  /* Gentle zoom on hover */
 }
 
 
@@ -407,3 +495,118 @@ body {
 
 /* Yellow */
 /* text1 and text5 use default white */
+
+
+/* skills2-section */
+/* 1. 첫 번째 줄 */
+.skills2-section .textLoop {
+  transform: rotate(2deg);
+  /* 여기서 기울기! */
+  width: 110%;
+  /* 기울어지면 여백이 보일 수 있으니 좀 더 넓게 */
+  margin-left: -5%;
+  /* 중심 맞추기 */
+  overflow: hidden;
+  margin-bottom: 40px;
+  /* 간격 좀 더 확보 */
+}
+
+.skills2-section .textLoop ul {
+  display: flex;
+  width: max-content;
+  gap: 70px;
+  list-style: none;
+  border: 1px solid rgb(255, 255, 255);
+  white-space: nowrap;
+  font-size: 100px;
+  letter-spacing: -2px;
+  /* 여기에 애니메이션 추가! */
+  animation: textLoop 18s linear infinite;
+  /* 시간도 좀 늘려주면 좋아요 */
+}
+
+.skills2-section .textLoop ul li {
+  display: flex;
+  /* <--- Flexbox 적용 */
+  align-items: center;
+  /* <--- 수직 중앙 정렬 (핵심!) */
+  gap: 20px;
+  /* 글자와 이미지 사이 간격 */
+  padding: 0;
+  list-style: none;
+}
+
+.skills2-section .textLoop ul li img {
+  /* 여기서 애니메이션 삭제! */
+  width: 100px;
+  height: 100px;
+}
+
+@keyframes textLoop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.card {
+  width: 100px;
+  height: 200px;
+}
+
+
+/* 2. 두 번째 줄 */
+.skills2-section .textLoop2 {
+  transform: rotate(-2deg);
+  /* 여기서 기울기! */
+  width: 110%;
+  /* 기울어지면 여백이 보일 수 있으니 좀 더 넓게 */
+  margin-left: -5%;
+  /* 중심 맞추기 */
+  overflow: hidden;
+  margin-bottom: 40px;
+  /* 간격 좀 더 확보 */
+}
+
+.skills2-section .textLoop2 ul {
+  display: flex;
+  width: max-content;
+  gap: 70px;
+  list-style: none;
+  border: 1px white solid;
+  white-space: nowrap;
+  font-size: 105px;
+  letter-spacing: -2px;
+  /* 여기에 애니메이션 추가! */
+  animation: textLoop2 18s linear infinite;
+}
+
+.skills2-section .textLoop2 ul li {
+  display: flex;
+  /* <--- Flexbox 적용 */
+  align-items: center;
+  /* <--- 수직 중앙 정렬 (핵심!) */
+  gap: 20px;
+  /* 글자와 이미지 사이 간격 */
+  padding: 0;
+  list-style: none;
+}
+
+@keyframes textLoop2 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.skills2-section .textLoop2 ul li img {
+  /* 여기서 애니메이션 삭제! */
+  width: 100px;
+  height: 100px;
+}
