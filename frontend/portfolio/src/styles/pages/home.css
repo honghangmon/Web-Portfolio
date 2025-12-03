@@ -500,7 +500,7 @@ body {
 /* skills2-section */
 /* 1. 첫 번째 줄 */
 .skills2-section .textLoop {
-  transform: rotate(2deg);
+  transform: rotate(1.5deg);
   /* 여기서 기울기! */
   width: 110%;
   /* 기울어지면 여백이 보일 수 있으니 좀 더 넓게 */
@@ -508,6 +508,7 @@ body {
   /* 중심 맞추기 */
   overflow: hidden;
   margin-bottom: 40px;
+  background: #ffffff;
   /* 간격 좀 더 확보 */
 }
 
@@ -518,8 +519,11 @@ body {
   list-style: none;
   border: 1px solid rgb(255, 255, 255);
   white-space: nowrap;
-  font-size: 100px;
+  font-size: 80px;
+  color: black;
   letter-spacing: -2px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   /* 여기에 애니메이션 추가! */
   animation: textLoop 18s linear infinite;
   /* 시간도 좀 늘려주면 좋아요 */
@@ -554,13 +558,13 @@ body {
 
 .card {
   width: 100px;
-  height: 200px;
+  height: 100px;
 }
 
 
 /* 2. 두 번째 줄 */
 .skills2-section .textLoop2 {
-  transform: rotate(-2deg);
+  transform: rotate(-1.5deg);
   /* 여기서 기울기! */
   width: 110%;
   /* 기울어지면 여백이 보일 수 있으니 좀 더 넓게 */
@@ -568,6 +572,7 @@ body {
   /* 중심 맞추기 */
   overflow: hidden;
   margin-bottom: 40px;
+
   /* 간격 좀 더 확보 */
 }
 
@@ -578,8 +583,10 @@ body {
   list-style: none;
   border: 1px white solid;
   white-space: nowrap;
-  font-size: 105px;
+  font-size: 80px;
   letter-spacing: -2px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   /* 여기에 애니메이션 추가! */
   animation: textLoop2 18s linear infinite;
 }
