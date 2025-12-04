@@ -224,6 +224,51 @@ body {
 }
 
 /* =========================================
+   Section 3: Me Burst
+   ========================================= */
+
+.me-burst {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.me-burst__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.me-burst__images {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.me-burst__img {
+  position: absolute;
+  /* Changed to absolute for GSAP control */
+  width: 150px;
+  /* Slightly smaller for better fit */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 30px;
+  /* Rounded Rectangle */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+  /* Performance Optimization */
+}
+
+/* =========================================
    Section 2: Self-Introduction
    ========================================= */
 .intro-section {
@@ -616,4 +661,254 @@ body {
   /* 여기서 애니메이션 삭제! */
   width: 100px;
   height: 100px;
+}
+
+/* project-section */
+.project-section {
+  padding: 100px 0;
+  text-align: center;
+  background-color: #000;
+  /* Dark background for contrast */
+  color: white;
+  position: relative;
+  /* Ensure containment */
+  overflow: hidden;
+  /* Prevent overflow */
+}
+
+.project-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.project-container h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Background Text */
+.bg-text {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  transform: none;
+  font-size: 8rem;
+  /* Slightly smaller to fit better */
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.15);
+  /* Increased visibility */
+  white-space: nowrap;
+  z-index: 0;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Side Floating Images */
+.side-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+  /* Adjust size as needed */
+  z-index: 5;
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.side-img img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.side-img.left {
+  left: 5%;
+  /* Position relative to container */
+}
+
+.side-img.right {
+  right: 5%;
+  /* Position relative to container */
+}
+
+/* Animation States */
+.side-img.exit-left {
+  transform: translate(-100px, -50%);
+  opacity: 0;
+}
+
+.side-img.exit-right {
+  transform: translate(100px, -50%);
+  opacity: 0;
+}
+
+.side-img.enter-left {
+  transform: translate(-100px, -50%);
+  opacity: 0;
+}
+
+.side-img.enter-right {
+  transform: translate(100px, -50%);
+  opacity: 0;
+}
+
+.no-transition {
+  transition: none !important;
+}
+
+
+/* Phone Frame & Carousel Container */
+.carousel-3d {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  /* Wide enough for side images */
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.phone-frame-overlay {
+  position: absolute;
+  width: 300px;
+  /* Adjust based on phone.png aspect ratio */
+  height: 600px;
+  z-index: 10;
+  /* Middle Layer */
+  pointer-events: none;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+/* --- Project Scene Wrapper --- */
+.project-scene {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  /* Match or contain carousel-3d */
+  height: 800px;
+  /* Match or contain carousel-3d */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  /* Center the scene */
+}
+
+.carousel-items {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-item {
+  position: absolute;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-item img {
+  width: 200px;
+  height: 260px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* --- State Styles --- */
+
+/* Active: Inside the phone */
+.c-item.active {
+  width: 272px;
+  /* Screen width */
+  height: 576px;
+  /* Screen height */
+  z-index: 11;
+  /* Top Layer */
+  border-radius: 35px;
+  /* Match phone corners */
+  transform: translate(0, 0) scale(1);
+  /* Fine-tune position if phone frame isn't perfectly centered or has offset screen */
+  margin-top: -2px;
+  /* Slight adjustment if needed */
+}
+
+/* Prev: Left, Behind */
+.c-item.prev {
+  width: 272px;
+  height: 576px;
+  z-index: 5;
+  /* Bottom Layer */
+  transform: translateX(-350px) scale(0.85) rotateY(15deg);
+  opacity: 0.6;
+  filter: blur(2px) brightness(0.7);
+}
+
+/* Next: Right, Behind */
+.c-item.next {
+  width: 272px;
+  height: 576px;
+  z-index: 5;
+  /* Bottom Layer */
+  transform: translateX(350px) scale(0.85) rotateY(-15deg);
+  opacity: 0.6;
+  filter: blur(2px) brightness(0.7);
+}
+
+/* Hidden items (if more than 3) */
+.c-item.hidden {
+  opacity: 0;
+  transform: scale(0);
+  z-index: 0;
+}
+
+/* Navigation Buttons */
+.phone-controls {
+  position: absolute;
+  /* 절대 위치로 변경 */
+  bottom: 80px;
+  /* 핸드폰 하단에서 얼마나 띄울지 (조절 필요) */
+  left: 50%;
+  /* 가로 중앙 */
+  transform: translateX(-50%);
+  /* 정확한 중앙 정렬 */
+
+  display: flex;
+  gap: 40px;
+  z-index: 20;
+  /* 핸드폰보다 위에 오도록 */
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }

@@ -27,6 +27,21 @@ export class Home {
           </div>
         </section>
 
+        <section class="me-burst" id="me-burst">
+          <div class="me-burst__center">YOONJUN</div>
+
+          <div class="me-burst__images">
+            <img src="/src/assets/val1.jpeg" alt="Frontend" class="me-burst__img" />
+            <img src="/src/assets/val2.jpeg" alt="UX" class="me-burst__img" />
+            <img src="/src/assets/val3.jpeg" alt="AI" class="me-burst__img" />
+            <img src="/src/assets/val4.jpeg" alt="Animation" class="me-burst__img" />
+            <img src="/src/assets/val5.jpeg" alt="Teamwork" class="me-burst__img" />
+            <img src="/src/assets/val6.jpeg" alt="Teamwork" class="me-burst__img" />
+            <img src="/src/assets/val7.jpeg" alt="Teamwork" class="me-burst__img" />
+          </div>
+        </section>
+
+
         <!-- Self-Introduction Section (Scroll Trigger) -->
         <section class="intro-section">
           <div class="intro-sticky-wrapper">
@@ -169,15 +184,41 @@ export class Home {
         <section class="project-section">
           <div class="project-container">
             <h2>Projects</h2>
-            <div class="project-grid">
-              <div class="project-card">
-                <img src="/src/assets/project1.png" alt="Project 1" />
-                <div class="project-info">
-                  <h3>Project 1</h3>
-                  <p>Project description goes here.</p>
+            
+            <div class="project-scene">
+              <!-- Background Elements -->
+              <div class="bg-text" id="bgText">TRIVERSE</div>
+              <div class="side-img left" id="sideLeft">
+                <img src="/src/assets/tri1.png" alt="Side Left" />
+              </div>
+              <div class="side-img right" id="sideRight">
+                <img src="/src/assets/tri2.png" alt="Side Right" />
+              </div>
+
+              <!-- Existing Carousel -->
+              <div class="carousel-3d">
+                <!-- Phone Frame Overlay -->
+                <img src="/src/assets/phone.png" class="phone-frame-overlay" alt="Phone Frame" />
+                
+                <!-- Carousel Items -->
+                <div class="carousel-items">
+                  <div class="c-item active" data-index="0">
+                    <img src="/src/assets/Triverse.jpeg" alt="Triverse" />
+                  </div>
+                  <div class="c-item next" data-index="1">
+                    <img src="/src/assets/Gooddog.jpeg" alt="Gooddog" />
+                  </div>
+                  <div class="c-item prev" data-index="2">
+                    <img src="/src/assets/Randezview.jpeg" alt="Randezview" />
+                  </div>
+                </div>
+                <div class="phone-controls">
+                  <button id="prevBtn" class="nav-btn">←</button>
+                  <button id="nextBtn" class="nav-btn">→</button>
                 </div>
               </div>
             </div>
+
           </div>
         </section>
       </main>
@@ -235,6 +276,50 @@ export class Home {
         delay: 0.5
       })
 
+    // Section 3: Me Burst Animation
+    const meSection = document.querySelector('.me-burst');
+    const meImages = document.querySelectorAll('.me-burst__img');
+
+    if (meSection && meImages.length > 0) {
+      // 1. Define Fixed End Positions & Scales (Scattered Layout)
+      // Coordinates relative to center (0,0)
+      const endPositions = [
+        { x: -450, y: -250, scale: 1.2 },  // Top Left (Large)
+        { x: 320, y: 100, scale: 0.8 },   // Top Right (Medium)
+        { x: -700, y: -100, scale: 0.9 },   // Middle Left (Small)
+        { x: 550, y: -100, scale: 1.4 },     // Middle Right (Large)
+        { x: -300, y: 250, scale: 1.4 },   // Bottom Left (Medium)
+        { x: 550, y: 270, scale: 1.5 },   // Bottom Right (Small)
+        { x: 150, y: -240, scale: 1.0 },     // Top Center (Very Small)
+      ];
+
+      // 3. Create ScrollTrigger Animation
+      // Performance Optimization: Start from 30% of the distance instead of center (0,0)
+      gsap.fromTo(meImages,
+        {
+          x: (i) => endPositions[i] ? endPositions[i].x * 0.5 : 0, // Start closer to end
+          y: (i) => endPositions[i] ? endPositions[i].y * 0.5 : 0,
+          scale: 0.5, // Start smaller
+        },
+        {
+          scrollTrigger: {
+            trigger: '.me-burst',
+            start: 'top center',
+            end: '+=400',
+            scrub: 1,
+          },
+          x: (i) => endPositions[i] ? endPositions[i].x : 0,
+          y: (i) => endPositions[i] ? endPositions[i].y : 0,
+          scale: (i) => endPositions[i] ? endPositions[i].scale : 1,
+          duration: 1,
+          ease: 'power2.out',
+          stagger: 0.05
+        }
+      );
+    }
+
+
+
     //section 2 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -285,5 +370,113 @@ export class Home {
       }
     );
 
+    // Project Data
+    const projects = [
+      {
+        name: "Triverse",
+        left: "/src/assets/tri1.png",
+        right: "/src/assets/tri2.png",
+        color: "#e865ffff",
+        title: "TRIVERSE"
+      },
+      {
+        name: "Gooddog",
+        left: "/src/assets/dog1.png",
+        right: "/src/assets/dog2.png",
+        color: "#7ED321",
+        title: "GOODDOG"
+      },
+      {
+        name: "Randezview",
+        left: "/src/assets/ran1.png",
+        right: "/src/assets/ran2.png",
+        color: "#ff4040ff",
+        title: "RANDEZVIEW"
+      }
+    ];
+
+    const items = document.querySelectorAll('.c-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const sideLeft = document.getElementById('sideLeft');
+    const sideRight = document.getElementById('sideRight');
+    const bgText = document.getElementById('bgText');
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+
+    if (items.length > 0 && prevBtn && nextBtn) {
+      const updateCarousel = () => {
+        // 1. Update Carousel Classes
+        items.forEach((item, index) => {
+          item.className = 'c-item';
+          if (index === currentIndex) {
+            item.classList.add('active');
+          } else if (index === (currentIndex - 1 + totalItems) % totalItems) {
+            item.classList.add('prev');
+          } else if (index === (currentIndex + 1) % totalItems) {
+            item.classList.add('next');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        // 2. Update Side Elements & Background
+        if (sideLeft && sideRight && bgText) {
+          const project = projects[currentIndex];
+          console.log('UpdateCarousel:', currentIndex, project.title, project.color); // Debug Log
+
+          // Animate Out
+          sideLeft.classList.add('exit-left');
+          sideRight.classList.add('exit-right');
+          bgText.style.opacity = 0;
+
+          setTimeout(() => {
+            // 1. Disable Transition & Update Content
+            sideLeft.classList.add('no-transition');
+            sideRight.classList.add('no-transition');
+
+            sideLeft.querySelector('img').src = project.left;
+            sideRight.querySelector('img').src = project.right;
+            bgText.textContent = project.title;
+            bgText.style.color = project.color; // Apply project color
+
+            // 2. Reset to Start Position (Instant)
+            sideLeft.classList.remove('exit-left');
+            sideRight.classList.remove('exit-right');
+
+            sideLeft.classList.add('enter-left');
+            sideRight.classList.add('enter-right');
+
+            // 3. Force Reflow (Flush changes)
+            void sideLeft.offsetWidth;
+
+            // 4. Re-enable Transition & Animate In
+            sideLeft.classList.remove('no-transition');
+            sideRight.classList.remove('no-transition');
+
+            sideLeft.classList.remove('enter-left');
+            sideRight.classList.remove('enter-right');
+            bgText.style.opacity = 1;
+          }, 300); // Sync with transition
+        }
+      };
+
+      // Initialize
+      if (bgText) {
+        bgText.style.color = projects[0].color;
+      }
+      updateCarousel();
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+      });
+    }
   }
 }
