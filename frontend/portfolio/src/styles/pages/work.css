@@ -5,6 +5,8 @@
 }
 
 .work-hero {
+  position: sticky;
+  top: 0;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -13,8 +15,7 @@
   align-items: center;
   overflow: hidden;
   background-color: #000;
-  /* Or any background color */
-  position: relative;
+  z-index: 20;
 }
 
 .work-hero-content {
@@ -23,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .work-title {
@@ -36,6 +38,8 @@
   white-space: nowrap;
   line-height: 1;
   margin: 0;
+  position: sticky;
+  top: 100px;
   /* Will be scaled up by GSAP initially */
 }
 
@@ -50,4 +54,269 @@
   height: 1px;
   background: #ffffff;
   margin: 20px 0;
+}
+
+/* Project Section Styles */
+.project-section {
+  background-color: #000000;
+  padding: 100px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Changed to column to stack container and toggle area */
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.project-container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+.project-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Typography & Elements */
+.project-title {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  /* ExtraBold */
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+}
+
+.project-subtitle {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #BBBBFF;
+  /* Light purple highlight */
+  margin: 0 0 24px 0;
+}
+
+.project-divider {
+  width: 40px;
+  height: 3px;
+  background-color: #AA77FF;
+  margin-bottom: 32px;
+}
+
+/* Info Rows */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: #E0E0E0;
+}
+
+.info-label {
+  color: #BB88FF;
+  /* Soft highlight */
+  font-weight: 600;
+  min-width: 40px;
+}
+
+/* Tech Stack */
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.tech-tag {
+  background-color: #111111;
+  color: #DDC5FF;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Description */
+.project-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #EDE1FF;
+  margin-bottom: 40px;
+}
+
+/* Button */
+.view-contribution-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  /* Full pill */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.view-contribution-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.chevron {
+  font-size: 12px;
+}
+
+/* Thumbnail */
+.project-thumbnail {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 32px;
+  box-shadow: 0 0 80px rgba(170, 80, 255, 0.25);
+  /* Soft purple glow */
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .project-container {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .project-left,
+  .project-right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-divider {
+    margin: 0 auto 32px auto;
+  }
+
+  .project-tech-stack {
+    justify-content: center;
+  }
+}
+
+/* Contribution Area Wrapper */
+.project-contribution-area {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 0 40px;
+  position: relative;
+  z-index: 12;
+  /* Ensure it stays above everything */
+}
+
+/* Contribution Toggle Styles */
+.view-contribution-btn.active {
+  background-color: #F3E7FF;
+  /* Very light purple */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.view-contribution-btn .chevron {
+  transition: transform 0.3s ease;
+}
+
+.view-contribution-btn.active .chevron {
+  transform: rotate(180deg);
+}
+
+.contribution-container {
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: #0D0D0D;
+  border-radius: 24px;
+  margin-top: 24px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contribution-container.expanded {
+  max-height: 1000px;
+  /* Large enough to fit content */
+  opacity: 1;
+  padding: 32px 40px;
+  margin-top: 32px;
+}
+
+.contribution-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  /* Space for scrollbar if visible */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.contribution-track::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+.contribution-card {
+  flex: 0 0 420px;
+  height: 260px;
+  /* Updated height as requested */
+  background-color: #111111;
+  border-radius: 24px;
+  padding: 24px;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contribution-card h4 {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #CFAAFF;
+  margin-bottom: 16px;
+}
+
+.contribution-card p {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #EDE1FF;
+  margin: 0;
 }

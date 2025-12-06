@@ -4,21 +4,31 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(11, 15, 25, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+  /* Transparent to show content behind */
   z-index: 1000;
-  transition: var(--transition);
+  height: 0;
+  /* Don't block clicks when closed */
 }
 
 .navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 100%;
+  padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 80px;
+  position: relative;
+  z-index: 1001;
+  /* Ensure brand and toggle are above overlay */
+  pointer-events: none;
+  /* Let clicks pass through empty space */
+}
+
+.navbar-brand,
+.navbar-toggle {
+  pointer-events: auto;
+  /* Re-enable clicks for these elements */
 }
 
 .navbar-brand a {
@@ -26,126 +36,116 @@
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
+  mix-blend-mode: difference;
+  /* Ensure visibility against light/dark backgrounds */
 }
 
+/* Fullscreen Overlay Menu */
 .navbar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 999;
+  /* Behind container but above page content */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-menu.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .navbar-item {
   position: relative;
+  overflow: hidden;
 }
 
 .navbar-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  display: block;
+  font-size: 2.5rem;
+  /* Large font size */
+  font-weight: 700;
   color: var(--text-secondary);
   text-decoration: none;
-  border-radius: var(--radius);
-  transition: var(--transition);
-  font-weight: 500;
+  padding: 10px 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-link:hover {
-  color: var(--text-primary);
-  background: rgba(99, 102, 241, 0.1);
-}
-
+.navbar-link:hover,
 .navbar-link.active {
   color: var(--primary-color);
-  background: rgba(99, 102, 241, 0.15);
-}
-
-.navbar-icon {
-  font-size: 1.2rem;
+  /* Use primary color for active/hover */
+  transform: scale(1.05);
+  background: none;
+  /* Remove background from previous style */
 }
 
 .navbar-label {
-  font-size: 0.9rem;
+  display: block;
+  /* Always show label */
 }
 
-/* 모바일 메뉴 토글 */
+/* Hamburger Toggle */
 .navbar-toggle {
-  display: none;
+  display: flex;
+  /* Always visible */
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 10px;
+  z-index: 1002;
+  /* Above everything */
 }
 
 .navbar-toggle span {
-  width: 25px;
-  height: 3px;
+  width: 30px;
+  height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
 }
 
+/* Hamburger Animation */
 .navbar-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .navbar-toggle.active span:nth-child(2) {
   opacity: 0;
+  transform: translateX(-10px);
 }
 
 .navbar-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
-/* 모바일 반응형 */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .navbar-container {
-    padding: 0 16px;
+    padding: 15px 20px;
   }
-  
-  .navbar-toggle {
-    display: flex;
-  }
-  
-  .navbar-menu {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: rgba(11, 15, 25, 0.98);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-  }
-  
-  .navbar-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .navbar-link {
-    justify-content: center;
-    padding: 1rem;
-    width: 100%;
-  }
-}
 
-@media (max-width: 480px) {
-  .navbar-label {
-    display: none;
-  }
-  
   .navbar-link {
-    justify-content: center;
-    padding: 0.75rem;
+    font-size: 2rem;
   }
 }
