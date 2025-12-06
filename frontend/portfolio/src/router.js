@@ -21,7 +21,7 @@ export class Router {
   init() {
     // 해시 변경 이벤트 리스너
     window.addEventListener('hashchange', () => this.handleRoute())
-    
+
     // 브라우저 뒤로가기/앞으로가기 처리
     window.addEventListener('popstate', () => this.handleRoute())
   }
@@ -29,16 +29,17 @@ export class Router {
   handleRoute() {
     const hash = window.location.hash || '#/'
     const PageComponent = this.routes[hash]
-    
+
     if (PageComponent) {
       // 이전 페이지 정리
       if (this.currentPage && this.currentPage.cleanup) {
         this.currentPage.cleanup()
       }
-      
+
       // 새 페이지 렌더링
       this.currentPage = new PageComponent()
       this.loadPageStyles(hash)
+      window.scrollTo(0, 0)
       this.render()
     } else {
       // 404 처리
@@ -49,16 +50,16 @@ export class Router {
   loadPageStyles(hash) {
     const pageName = hash.replace('#/', '') || 'home'
     const styleId = `page-${pageName}-style`
-    
+
     // 이미 로드된 스타일이면 스킵
     if (this.loadedStyles.has(styleId)) return
-    
+
     // CSS 파일 동적 로드
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = `/src/styles/pages/${pageName}.css`
     link.id = styleId
-    
+
     document.head.appendChild(link)
     this.loadedStyles.add(styleId)
   }
@@ -67,7 +68,7 @@ export class Router {
     const app = document.getElementById('app')
     if (this.currentPage) {
       app.innerHTML = this.currentPage.render()
-      
+
       // 페이지별 초기화
       if (this.currentPage.init) {
         this.currentPage.init()

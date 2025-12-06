@@ -60,7 +60,8 @@ export class Home {
         </section>
 
         <!-- Skills Section -->
-        <section class="skills-section">
+        <!-- Skills Section -->
+        <!-- <section class="skills-section">
           <span class="skills-mask">
             <span class="skills-text">
               <span class="skills-line-1">SKILLS</span>
@@ -68,7 +69,6 @@ export class Home {
           </span>
           
           <div class="skills-container">
-            <!-- Skill Cards -->
             <div class="skill-card">
               <div class="card-inner">
                 <div class="card-front"><img src="/src/assets/skills1.png" alt="HTML" /></div>
@@ -142,7 +142,7 @@ export class Home {
               </div>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <section class="skills2-section">
         <div class="textLoop">
@@ -227,13 +227,13 @@ export class Home {
 
   init() {
     // 1. Slogan Section Animations (Timeline)
-    const sloganTl = gsap.timeline()
+    this.sloganTl = gsap.timeline()
 
     // Initial setup for slogan words
     gsap.set('.slogan-word', { opacity: 0, y: 20 });
     gsap.set('.slogan-container', { opacity: 1 }); // Ensure container is visible
 
-    sloganTl.to('.character-image', {
+    this.sloganTl.to('.character-image', {
       opacity: 1,
       duration: 1.5,
       ease: 'power2.out',
@@ -295,7 +295,7 @@ export class Home {
 
       // 3. Create ScrollTrigger Animation
       // Performance Optimization: Start from 30% of the distance instead of center (0,0)
-      gsap.fromTo(meImages,
+      this.meBurstTween = gsap.fromTo(meImages,
         {
           x: (i) => endPositions[i] ? endPositions[i].x * 0.5 : 0, // Start closer to end
           y: (i) => endPositions[i] ? endPositions[i].y * 0.5 : 0,
@@ -316,6 +316,29 @@ export class Home {
           stagger: 0.05
         }
       );
+
+      // 4. Background Color Change Animation
+      this.meBurstTrigger = ScrollTrigger.create({
+        trigger: '.me-burst',
+        start: 'top center', // Start when top of section hits center of viewport (same as burst)
+        end: 'bottom center',   // End when bottom of section hits center of viewport
+        onEnter: () => {
+          gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
+          gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
+        },
+        onLeave: () => {
+          gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
+          gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
+        },
+        onEnterBack: () => {
+          gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
+          gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
+        },
+        onLeaveBack: () => {
+          gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
+          gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
+        }
+      });
     }
 
 
@@ -334,6 +357,8 @@ export class Home {
       }
     });
 
+    this.introTl = tl; // Store for cleanup
+
     tl.fromTo('.intro-sticky-wrapper .mask .text span', {
       'background-size': '100% 0%'
     }, {
@@ -344,31 +369,33 @@ export class Home {
 
     // 3. Skills Section Animation (Left to Right Fill)
     // 1. 타임라인 생성 (변수에 담기!)
-    const skillsTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.skills-section',
-        start: 'top 80%',
-        end: 'center center',
-        scrub: 1,
-        markers: true
-      }
-    });
+    if (document.querySelector('.skills-section')) {
+      this.skillsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.skills-section',
+          start: 'top 80%',
+          end: 'center center',
+          scrub: 1,
+          markers: true
+        }
+      });
 
-    // 2. 생성한 타임라인에 애니메이션 추가
-    skillsTl.fromTo('.skills-text span',
-      {
-        'background-size': '0% 100%',
-        x: -100,
-        opacity: 0,
-      },
-      {
-        'background-size': '100% 100%',
-        x: 0,
-        opacity: 1,
-        stagger: 0.5,
-        ease: 'none' // scrub을 쓸 때는 보통 none을 씁니다 (스크롤 속도 그대로 따라가게)
-      }
-    );
+      // 2. 생성한 타임라인에 애니메이션 추가
+      this.skillsTl.fromTo('.skills-text span',
+        {
+          'background-size': '0% 100%',
+          x: -100,
+          opacity: 0,
+        },
+        {
+          'background-size': '100% 100%',
+          x: 0,
+          opacity: 1,
+          stagger: 0.5,
+          ease: 'none' // scrub을 쓸 때는 보통 none을 씁니다 (스크롤 속도 그대로 따라가게)
+        }
+      );
+    }
 
     // Project Data
     const projects = [
@@ -406,6 +433,9 @@ export class Home {
     const totalItems = items.length;
 
     if (items.length > 0 && prevBtn && nextBtn) {
+      this.nextBtn = nextBtn;
+      this.prevBtn = prevBtn;
+
       const updateCarousel = () => {
         // 1. Update Carousel Classes
         items.forEach((item, index) => {
@@ -468,15 +498,40 @@ export class Home {
       }
       updateCarousel();
 
-      nextBtn.addEventListener('click', () => {
+      this.handleNext = () => {
         currentIndex = (currentIndex + 1) % totalItems;
         updateCarousel();
-      });
+      };
+      nextBtn.addEventListener('click', this.handleNext);
 
-      prevBtn.addEventListener('click', () => {
+      this.handlePrev = () => {
         currentIndex = (currentIndex - 1 + totalItems) % totalItems;
         updateCarousel();
-      });
+      };
+      prevBtn.addEventListener('click', this.handlePrev);
     }
+  }
+
+  cleanup() {
+    // Kill GSAP animations
+    if (this.sloganTl) this.sloganTl.kill();
+    if (this.meBurstTween) this.meBurstTween.kill();
+    if (this.meBurstTrigger) this.meBurstTrigger.kill();
+    if (this.introTl) this.introTl.kill();
+    if (this.skillsTl) this.skillsTl.kill();
+
+    // Remove Event Listeners
+    if (this.nextBtn && this.handleNext) {
+      this.nextBtn.removeEventListener('click', this.handleNext);
+    }
+    if (this.prevBtn && this.handlePrev) {
+      this.prevBtn.removeEventListener('click', this.handlePrev);
+    }
+
+    // Reset body styles if me-burst changed them
+    gsap.set('body', { backgroundColor: '#0a0a0a', color: '#f5f5f5' });
+
+    // Clear ScrollTriggers to be safe
+    ScrollTrigger.getAll().forEach(t => t.kill());
   }
 }
