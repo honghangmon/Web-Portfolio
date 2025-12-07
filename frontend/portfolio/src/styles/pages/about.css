@@ -1,265 +1,382 @@
-/* About Page Styles */
-.page-title {
-  font-size: 3rem;
-  /* Increased size for better hierarchy */
-  font-weight: 800;
-  line-height: 1.3;
-  color: #000;
-  word-break: keep-all;
-  margin-bottom: 2rem;
-  text-align: center;
-  /* Center the title */
-  /* Add spacing below title */
-}
+/* About 페이지 - 모던 비주얼 리디자인 */
 
+/* 페이지 & 타이틀 */
 .about-page {
   width: 100%;
   min-height: 100vh;
   background-color: #ffffff;
-  color: #000000;
-  display: block;
-  /* Changed from flex to block */
-  padding: 2rem;
+  color: #000;
   font-family: 'Pretendard', sans-serif;
   overflow-x: hidden;
-  /* Removed overflow-y: auto to let body scroll */
+  padding-bottom: 100px;
 }
 
-.about-container {
-  position: relative;
-  width: 100%;
-  max-width: 1600px;
-  min-height: 90vh;
-  /* Use min-height to allow expansion */
-  height: auto;
-  /* Allow auto height */
-  display: grid;
-  grid-template-columns: 1fr 400px 1fr;
-  /* Left, Center, Right */
-  grid-template-rows: 1fr 1fr;
-  /* Top, Bottom */
-  gap: 2rem;
-  margin: 0 auto 100px;
-  /* Center container and add bottom margin */
-}
-
-/* Center Section */
-.center-section {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.slogan-container {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.slogan {
-  font-size: 2.5rem;
+.page-title {
+  font-size: 3rem;
   font-weight: 800;
-  line-height: 1.3;
-  color: #000;
-  word-break: keep-all;
+  text-align: center;
+  margin: 60px 0 80px 0;
+  letter-spacing: -1px;
 }
 
-.profile-image-container {
-  width: 300px;
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+/* Grid Area가 적용된 메인 컨테이너 */
+.about-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 360px 1fr;
+  /* 동일 너비 사이드 칼럼 */
+  grid-template-rows: auto auto;
+  /* 두 개의 메인 행 */
+  grid-template-areas:
+    "degree center education"
+    "work   center project";
+  gap: 60px 200px;
+  /* 행 간격: 60px, 열 간격: 80px (균형을 위해 증가) */
+  align-items: start;
+  /* 타이틀 일치를 위한 상단 정렬 */
 }
 
-.profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Grid Area 할당 */
+.section-degree {
+  grid-area: degree;
 }
 
-/* Quadrants */
-.quadrant {
+.section-work {
+  grid-area: work;
+}
+
+.col-center {
+  grid-area: center;
+}
+
+.section-education {
+  grid-area: education;
+}
+
+.section-project {
+  grid-area: project;
+}
+
+
+/* 중앙 칼럼 세부 설정 */
+.col-center {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-}
-
-.top-left {
-  grid-column: 1;
-  grid-row: 1;
-  align-items: flex-end;
-  /* Align content to right (towards center) */
-  text-align: right;
-}
-
-.top-right {
-  grid-column: 3;
-  grid-row: 1;
-  align-items: flex-start;
-  /* Align content to left (towards center) */
-  text-align: left;
-}
-
-.bottom-left {
-  grid-column: 1;
-  grid-row: 2;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.bottom-right {
-  grid-column: 3;
-  grid-row: 2;
-  align-items: flex-start;
-  text-align: left;
-}
-
-/* Section Headers */
-.section-header {
-  margin-bottom: 1.5rem;
-}
-
-.section-header h3 {
-  display: inline-block;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: capitalize;
-  border: 2px solid #000;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  color: #000;
-}
-
-/* Content Lists */
-.content-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.item-header {
-  font-size: 1.1rem;
-  font-weight: 700;
-  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  text-align: center;
+  margin-top: 40px;
+  /* 사이드 타이틀과의 시각적 균형을 위해 약간 아래로 이동 */
 }
 
-/* Align bullets correctly based on text align */
-.top-left .item-header,
-.bottom-left .item-header {
-  flex-direction: row-reverse;
-  /* Bullet on right for right-aligned text */
+/* 섹션 컴포넌트 */
+/* 왼쪽 칼럼(학위/경력) 텍스트 강제 우측 정렬 */
+.section-degree,
+.section-work {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.bullet {
-  font-size: 1.5rem;
-  line-height: 0;
-  margin-top: -3px;
-  /* Visual adjustment */
+/* 오른쪽 칼럼(교육/프로젝트) 텍스트 강제 좌측 정렬 */
+.section-education,
+.section-project {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.title {
-  color: #333;
-}
-
-.subtitle {
+/* 미니멀 라벨 */
+.section-label {
+  display: inline-block;
+  border: 1px solid #000;
+  padding: 4px 12px;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: #666;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  /* 라벨 아래 여백 추가 */
+  letter-spacing: 0.5px;
 }
 
-.subtitle.highlight {
-  color: #c0392b;
-  /* Reddish color for emphasis */
-}
-
-.date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 0.5rem;
-}
-
-/* Sub Lists (Education details, etc) */
-.sub-list {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.sub-item {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.detail-list {
+/* 리스트 */
+.about-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 40px;
+  /* 여백 확보를 위한 아이템 간격 증가 */
 }
 
-.detail-list li {
+.about-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* 제목과 서브/불릿 사이 간격 */
+}
+
+.item-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+/* 칼럼 컨텍스트에 따른 아이템 내용 정렬 */
+.section-degree .item-main,
+.section-work .item-main {
+  justify-content: flex-end;
+  /* 왼쪽 칼럼 제목 우측 정렬 */
+}
+
+.section-education .item-main,
+.section-project .item-main {
+  justify-content: flex-start;
+  /* 오른쪽 칼럼 제목 좌측 정렬 */
+}
+
+
+.item-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.item-period {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.item-sub {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.item-bullets {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  /* 아이템 내부 여백 확보 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* 불릿 간 간격 */
+}
+
+.item-bullets li {
   position: relative;
-  padding-left: 1rem;
-  /* Space for bullet */
+  font-size: 0.9rem;
   color: #555;
-  text-align: left;
-  /* Always left align details for readability? Or match quadrant? */
+  line-height: 1.6;
 }
 
-/* Override for left quadrants to align details right */
-.top-left .detail-list li,
-.bottom-left .detail-list li {
-  padding-left: 0;
-  padding-right: 1rem;
-  text-align: right;
-}
-
-.detail-list li::before {
+/* 불릿 스타일링 */
+.item-bullets li::before {
   content: '';
-  position: absolute;
-  left: 0;
-  top: 0.6em;
+  display: inline-block;
   width: 4px;
   height: 4px;
-  background-color: #27ae60;
-  /* Green square bullet */
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
-/* Adjust bullet position for right-aligned lists */
-.top-left .detail-list li::before,
-.bottom-left .detail-list li::before {
-  left: auto;
-  right: 0;
+/* 왼쪽 칼럼 불릿 우측 정렬? 사용자가 지정하지 않았지만, 텍스트 정렬이 우측이면 텍스트도 우측에 있습니다.
+   불릿은 일반적인 스타일을 유지하거나 필요에 따라 조정합시다.
+   사실, 표준 리스트 흐름은 왼쪽에서 오른쪽으로 읽는 것이 더 쉽습니다.
+   하지만 대칭을 위해 왼쪽 칼럼은 보통 우측 정렬됩니다. */
+
+.section-degree .item-bullets li,
+.section-work .item-bullets li {
+  text-align: right;
+  padding-right: 0;
 }
 
-/* --- What I Like Section Styles --- */
+.section-degree .item-bullets li::before,
+.section-work .item-bullets li::before {
+  display: none;
+  /* 시각적 불릿 숨기기 또는 엄격한 대칭이 필요한 경우 가상 요소를 통해 오른쪽에 배치 */
+  /* 왼쪽 칼럼의 불릿을 오른쪽에 배치해 봅시다 */
+}
+
+/* 왼쪽 칼럼 불릿을 오른쪽에 다시 추가 */
+.section-degree .item-bullets li::after,
+.section-work .item-bullets li::after {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-left: 8px;
+  /* 오른쪽 불릿을 위한 왼쪽 여백 */
+  vertical-align: middle;
+}
+
+
+/* 중앙 칼럼 세부 설정 */
+.slogan-block {
+  margin-bottom: 60px;
+}
+
+.main-slogan {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #000;
+  word-break: keep-all;
+}
+
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-card {
+  width: 280px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  /* 부드러운 대칭 그림자 */
+  background-color: #f0f0f0;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-caption {
+  font-size: 0.9rem;
+  color: #888;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+}
+
+.col-center .main-slogan {
+  font-family: 'Pretendard', sans-serif !important;
+  font-size: 2.8rem !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  color: #000 !important;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  text-transform: none !important;
+  margin: 30px 0;
+  white-space: normal !important;
+  /* Allow wrapping */
+}
+
+.col-center .slogan-block {
+  /* Ensure container doesn't enforce odd alignments */
+  text-align: center;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 1200px) {
+  .about-container {
+    display: flex;
+    /* Flex 스택으로 대체 */
+    flex-direction: column;
+    max-width: 600px;
+    gap: 80px;
+    grid-template-areas: none;
+    /* Grid Area 비활성화 */
+  }
+
+  /* 모바일 흐름을 위한 순서 재배치 */
+  .col-center {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .section-degree {
+    order: 0;
+  }
+
+  .section-education {
+    order: 1;
+  }
+
+  .section-work {
+    order: 2;
+  }
+
+  .section-project {
+    order: 3;
+  }
+
+  /* 모바일 가독성을 위해 정렬을 중앙/왼쪽으로 초기화 */
+  .section-degree,
+  .section-work,
+  .section-education,
+  .section-project {
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-degree .item-main,
+  .section-work .item-main,
+  .section-education .item-main,
+  .section-project .item-main {
+    justify-content: center;
+  }
+
+  .item-bullets li {
+    text-align: center;
+  }
+
+  .section-degree .item-bullets li::after,
+  .section-work .item-bullets li::after {
+    display: none;
+    /* 단순화를 위해 모바일에서는 불릿 없음 */
+  }
+
+  .item-bullets li::before {
+    display: none;
+  }
+
+  .profile-card {
+    width: 240px;
+    height: 300px;
+  }
+}
+
+/* Like, Skills 등 기존 스타일 유지 */
+/* ... (이 파일 공유시 아래 스타일 유지) ... */
+
+/* --- What I Like 섹션 스타일 --- */
 .like-section {
   width: 100%;
   height: 100vh;
-  /* Full viewport height for pinning */
+  /* 고정을 위한 전체 뷰포트 높이 */
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  /* Ensure it doesn't overlap */
+  /* 겹치지 않도록 보장 */
   z-index: 5;
   overflow: hidden;
-  /* Prevent scaled content from bleeding out */
+  /* 확대된 콘텐츠가 삐져나오지 않도록 방지 */
+  margin-top: 100px;
+  /* 간격 */
 }
 
 .like-sticky-wrapper {
@@ -274,17 +391,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
+  gap: 5px;
   width: 90vw;
   max-width: 1000px;
-  height: 90vw;
+  height: 95vh;
   max-height: 1000px;
-  /* Keep it square-ish */
+  /* 정사각형 형태 유지 */
 }
 
 .grid-item {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -292,12 +409,12 @@
 
 .center-box {
   background-color: #ffcc00;
-  /* Yellow background like the example */
+  /* 예시와 같은 노란색 배경 */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  /* Ensure it stays on top if needed */
+  /* 필요시 최상단 유지 */
 }
 
 .like-text {
@@ -314,99 +431,47 @@
   transition: transform 0.3s ease;
 }
 
+.hobby-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 딤 오버레이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  /* 이미지 위에 표시 */
+  pointer-events: none;
+  /* 마우스 이벤트가 이미지 호버에 영향주지 않도록 */
+}
+
+.hobby-img:hover .hobby-overlay {
+  opacity: 1;
+}
+
 .hobby-img:hover img {
   transform: scale(1.1);
 }
 
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .about-container {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    height: auto;
-    padding-bottom: 4rem;
-  }
-
-  .center-section {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-    margin-bottom: 3rem;
-  }
-
-  .top-left {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .top-right {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .bottom-left {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .bottom-right {
-    grid-column: 2;
-    grid-row: 3;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .quadrant {
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .top-left .item-header,
-  .bottom-left .item-header {
-    flex-direction: row;
-    /* Reset to normal flow */
-    justify-content: center;
-  }
-
-  .top-left .detail-list li,
-  .bottom-left .detail-list li {
-    text-align: center;
-    padding: 0;
-  }
-
-  .detail-list li::before {
-    display: none;
-    /* Hide custom bullets on mobile for simpler layout */
-  }
-
-  /* Like Section Mobile */
-  .like-grid {
-    gap: 10px;
-  }
-
-  .like-text {
-    font-size: 2rem;
-  }
-}
-
-/* --- Skills Section Styles (Moved from Home) --- */
+/* Skills Section */
 .skills-section {
   height: 100vh;
   background-color: #ffffff;
-  /* Changed to white to match About page */
+  /* Explicitly set white background to prevent global black body bleed */
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+  overflow: hidden;
 }
 
 .skills-mask {
@@ -427,7 +492,7 @@
 .skills-text span {
   display: inline-block;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.1);
-  /* Changed to black for white bg */
+  /* 흰색 배경에 맞춰 검정색으로 변경 */
   -webkit-background-clip: text;
   background-clip: text;
   background-repeat: no-repeat;
@@ -437,7 +502,7 @@
 
 .skills-line-1 {
   background-image: linear-gradient(to right, #000000, #000000);
-  /* Changed to black */
+  /* 검정색으로 변경 */
 }
 
 .skills-container {
@@ -473,7 +538,7 @@
   transform-style: preserve-3d;
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  /* Lighter shadow */
+  /* 더 연한 그림자 */
 }
 
 .skill-card:hover .card-inner {
@@ -498,7 +563,7 @@
 
 .card-front {
   background: rgba(255, 255, 255, 0.8);
-  /* More opaque for white bg */
+  /* 흰색 배경을 위해 불투명도 증가 */
   border: 1px solid rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -511,28 +576,46 @@
 
 .card-back {
   background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-  /* Light gradient */
   color: black;
   transform: rotateY(180deg);
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  /* 내부 여백 추가 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 */
+  box-sizing: border-box;
+  /* 패딩 포함 크기 계산 */
 }
 
 .card-back h3 {
   font-family: 'Pretendard';
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  /* 크기 약간 조정 */
   font-weight: 700;
-  margin-bottom: 10px;
+  margin: 0 0 12px 0;
+  /* 마진 정리 */
   background: linear-gradient(to right, #333, #666);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  width: 100%;
+  /* 전체 폭 사용 */
 }
 
 .card-back p {
   font-family: 'Pretendard';
-  font-size: 1.2rem;
-  color: #666;
-  font-weight: 300;
+  font-size: 0.95rem;
+  /* 가독성 좋은 본문 크기 */
+  color: #444;
+  /* 명도 개선 */
+  font-weight: 400;
+  /* 두께 약간 증가 */
+  line-height: 1.5;
+  /* 줄간격 확대 */
+  word-break: keep-all;
+  /* 한글 단어 끊김 방지 */
+  margin: 0;
+  width: 100%;
 }
 
 .skill-card img {
@@ -547,27 +630,7 @@
   transform: scale(1.1);
 }
 
-/* Responsive for Skills */
-@media (max-width: 1200px) {
-  .skills-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .skills-container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 20px;
-  }
-
-  .skills-mask {
-    font-size: 40px;
-    top: 50px;
-    left: 20px;
-  }
-}
-
-/* Strength Section */
+/* Strength 섹션 */
 .strength-section {
   width: 100%;
   min-height: 100vh;
@@ -595,7 +658,7 @@
 
 .strength-left h2 {
   font-size: 4rem;
-  font-weight: 900;
+  font-weight: 1000;
   line-height: 1;
   margin: 0;
   color: #000;
@@ -617,22 +680,81 @@
   height: 400px;
   background-color: #f5f5f5;
   border-radius: 20px;
-  /* Remove padding from box, move to content */
   position: relative;
-  /* For absolute positioning of content */
   transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   flex: 1;
-  /* Default equal width */
   overflow: hidden;
-  /* Hide content overflow during transition */
+  border: 4px solid transparent;
+  /* 기본 테두리 투명 */
 }
+
+/* 개별 카드 색상 (테두리 & 텍스트) */
+/* 1. Execution - Yellow */
+.strength-box.strength-1 {
+  background-color: #FFB400;
+  border-color: #FFB400;
+}
+
+.strength-box.strength-1 h3 {
+  color: #FFFFFF;
+}
+
+/* 2. Communication - Blue */
+.strength-box.strength-2 {
+  background-color: #4F8CFF;
+  border-color: #4F8CFF;
+}
+
+.strength-box.strength-2 h3 {
+  color: #ffffff;
+}
+
+/* 3. Responsibility - Pink */
+.strength-box.strength-3 {
+  background-color: #FF5C7A;
+  border-color: #FF5C7A;
+}
+
+.strength-box.strength-3 h3 {
+  color: #ffffff;
+}
+
+/* 4. Note-Taking - Teal */
+.strength-box.strength-4 {
+  background-color: #2EC4B6;
+  border-color: #2EC4B6;
+}
+
+.strength-box.strength-4 h3 {
+  color: #ffffff;
+}
+
+/* 5. Positivity - Purple */
+.strength-box.strength-5 {
+  background-color: #9B5DE5;
+  border-color: #9B5DE5;
+}
+
+.strength-box.strength-5 h3 {
+  color: #ffffff;
+}
+
+/* 6. User-Centered - Orange */
+.strength-box.strength-6 {
+  background-color: #a4f620;
+  border-color: #a4f620;
+}
+
+.strength-box.strength-6 h3 {
+  color: #ffffff;
+}
+
+/* Updated to Orange */
 
 .strength-box:hover {
   flex: 3;
-  /* Expand on hover */
   background-color: #e0e0e0;
-  /* Optional: slight color change */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -646,7 +768,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Removed generic transition */
 }
 
 .sb-default {
@@ -655,14 +776,12 @@
   justify-content: center;
   align-items: center;
   transition: opacity 0.5s ease 0.2s;
-  /* Fade in slowly when returning */
 }
 
 .sb-hover {
   opacity: 0;
   z-index: 2;
   transition: opacity 0s;
-  /* Disappear immediately when not hovered */
 }
 
 .sb-hover h3 {
@@ -672,13 +791,11 @@
 .strength-box:hover .sb-default {
   opacity: 0;
   transition: opacity 0.2s ease;
-  /* Fade out quickly on hover */
 }
 
 .strength-box:hover .sb-hover {
   opacity: 1;
   transition: opacity 0.5s ease 0.2s;
-  /* Fade in with delay on hover */
 }
 
 .strength-box h3 {
@@ -688,7 +805,6 @@
   text-align: center;
   color: #000;
   white-space: nowrap;
-  /* Prevent wrapping during transition if needed */
 }
 
 .strength-box p {
@@ -696,13 +812,23 @@
   color: #666;
   line-height: 1.5;
   min-width: 200px;
-  /* Ensure text block has width even when compressed */
 }
 
-/* Responsive Design for Strength Section */
 @media (max-width: 1200px) {
-  /* No specific grid change needed for flex, but maybe adjust gap */
+  /* ... Responsive logic handled at top ... */
 }
+
+/* Navbar Theme Override for About Page */
+.navbar.navbar-dark .navbar-brand a {
+  color: #000 !important;
+  mix-blend-mode: normal !important;
+}
+
+.navbar.navbar-dark .navbar-toggle span {
+  background: #000 !important;
+}
+
+/* Navbar links should remain as they were (or explicitly set if needed, but user asked to only change brand/toggle) */
 
 @media (max-width: 768px) {
   .strength-layout {
@@ -710,15 +836,9 @@
   }
 
   .strength-left {
-    position: relative;
-    top: 0;
-    transform: none;
-    text-align: left;
-    padding-right: 0;
-    border-right: none;
+    padding: 0;
     margin-bottom: 40px;
     justify-content: flex-start;
-    padding: 0;
   }
 
   .strength-left h2 {
@@ -727,13 +847,11 @@
 
   .strength-row {
     flex-direction: column;
-    /* Stack vertically on mobile */
   }
 
   .strength-box {
     height: 300px;
     flex: none;
-    /* Disable flex expansion on mobile */
     width: 100%;
   }
 }

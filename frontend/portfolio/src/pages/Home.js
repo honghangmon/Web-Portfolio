@@ -318,27 +318,27 @@ export class Home {
       );
 
       // 4. Background Color Change Animation
-      this.meBurstTrigger = ScrollTrigger.create({
-        trigger: '.me-burst',
-        start: 'top center', // Start when top of section hits center of viewport (same as burst)
-        end: 'bottom center',   // End when bottom of section hits center of viewport
-        onEnter: () => {
-          gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
-          gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
-        },
-        onLeave: () => {
-          gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
-          gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
-        },
-        onEnterBack: () => {
-          gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
-          gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
-        },
-        onLeaveBack: () => {
-          gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
-          gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
-        }
-      });
+      // this.meBurstTrigger = ScrollTrigger.create({
+      //   trigger: '.me-burst',
+      //   start: 'top center', // Start when top of section hits center of viewport (same as burst)
+      //   end: 'bottom center',   // End when bottom of section hits center of viewport
+      //   onEnter: () => {
+      //     gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
+      //     gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
+      //   },
+      //   onLeave: () => {
+      //     gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
+      //     gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
+      //   },
+      //   onEnterBack: () => {
+      //     gsap.to('body', { backgroundColor: '#ffffff', color: '#000000', duration: 0.5 });
+      //     gsap.to('.me-burst__center', { color: '#000000', duration: 0.5 });
+      //   },
+      //   onLeaveBack: () => {
+      //     gsap.to('body', { backgroundColor: '#0a0a0a', color: '#ffffffff', duration: 0.5 });
+      //     gsap.to('.me-burst__center', { color: '#ffffff', duration: 0.5 });
+      //   }
+      // });
     }
 
 

@@ -1,11 +1,12 @@
-/* Work Page Styles */
+/* --- Work 페이지 스타일 --- */
 .work-page {
   width: 100%;
   background-color: #000000;
+  min-height: 100vh;
 }
 
 .work-hero {
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 100vh;
   width: 100%;
@@ -15,7 +16,7 @@
   align-items: center;
   overflow: hidden;
   background-color: #000;
-  z-index: 20;
+  z-index: 10;
 }
 
 .work-hero-content {
@@ -30,7 +31,7 @@
 .work-title {
   font-family: 'Pretendard', sans-serif;
   font-size: 10vw;
-  /* Base size for the "normal" state */
+  /* "일반" 상태의 기본 크기 */
   justify-content: center;
   align-items: center;
   font-weight: 900;
@@ -40,13 +41,15 @@
   margin: 0;
   position: sticky;
   top: 100px;
-  /* Will be scaled up by GSAP initially */
+  /* 초기에 GSAP에 의해 확대될 예정 */
+  transform-origin: center top;
+  will-change: transform;
 }
 
 .work-list {
   position: relative;
   z-index: 2;
-  background-color: #fff;
+  background-color: #000000;
 }
 
 .line {
@@ -54,16 +57,29 @@
   height: 1px;
   background: #ffffff;
   margin: 20px 0;
+  position: absolute;
+  /* Flex 흐름의 영향을 받지 않도록 설정 */
+  bottom: 0;
+  /* 부모(.work-hero)의 맨 아래에 붙임 */
+  left: 0;
+  /* 좌측 정렬 */
+  z-index: 100;
+  /* 다른 요소보다 위에 오도록 순서 보장 */
+  margin: 0;
 }
 
-/* Project Section Styles */
+.empty-space {
+  height: 1100px;
+}
+
+/* --- 프로젝트 섹션 스타일 --- */
 .project-section {
   background-color: #000000;
   padding: 100px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* Changed to column to stack container and toggle area */
+  /* 컨테이너와 토글 영역을 쌓기 위해 column으로 변경 */
   align-items: center;
   position: relative;
   z-index: 10;
@@ -92,12 +108,12 @@
   align-items: center;
 }
 
-/* Typography & Elements */
+/* 타이포그래피 & 요소 */
 .project-title {
   font-family: 'Pretendard', sans-serif;
   font-size: 48px;
   font-weight: 800;
-  /* ExtraBold */
+  /* ExtraBold 강조 */
   color: #FFFFFF;
   margin: 0 0 10px 0;
 }
@@ -107,7 +123,7 @@
   font-size: 20px;
   font-weight: 400;
   color: #BBBBFF;
-  /* Light purple highlight */
+  /* 연한 보라색 하이라이트 */
   margin: 0 0 24px 0;
 }
 
@@ -118,7 +134,7 @@
   margin-bottom: 32px;
 }
 
-/* Info Rows */
+/* 정보 행 (Info Rows) */
 .project-info {
   display: flex;
   flex-direction: column;
@@ -136,12 +152,12 @@
 
 .info-label {
   color: #BB88FF;
-  /* Soft highlight */
+  /* 부드러운 강조색 */
   font-weight: 600;
   min-width: 40px;
 }
 
-/* Tech Stack */
+/* 기술 스택 */
 .project-tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -158,7 +174,7 @@
   font-weight: 500;
 }
 
-/* Description */
+/* 설명글 (Description) */
 .project-description {
   font-size: 18px;
   line-height: 1.6;
@@ -166,14 +182,14 @@
   margin-bottom: 40px;
 }
 
-/* Button */
+/* 버튼 */
 .view-contribution-btn {
   background-color: #FFFFFF;
   color: #000000;
   border: none;
   padding: 12px 24px;
   border-radius: 50px;
-  /* Full pill */
+  /* 완전한 알약(Full pill) 형태 */
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -193,17 +209,17 @@
   font-size: 12px;
 }
 
-/* Thumbnail */
+/* 썸네일 */
 .project-thumbnail {
   width: 100%;
   max-width: 560px;
   border-radius: 32px;
   box-shadow: 0 0 80px rgba(170, 80, 255, 0.25);
-  /* Soft purple glow */
+  /* 은은한 보라색 글로우 */
   display: block;
 }
 
-/* Responsive */
+/* 반응형 스타일 */
 @media (max-width: 1024px) {
   .project-container {
     flex-direction: column;
@@ -227,24 +243,25 @@
   }
 }
 
-/* Contribution Area Wrapper */
+/* 기여도 상세 영역 (Contribution Area) 래퍼 */
 .project-contribution-area {
   width: 100%;
   max-width: 1440px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 40px;
   padding: 0 40px;
   position: relative;
   z-index: 12;
-  /* Ensure it stays above everything */
+  /* 다른 모든 요소 위에 표시되도록 보장 */
 }
 
-/* Contribution Toggle Styles */
+
+/* 기여도 토글 버튼 스타일 */
 .view-contribution-btn.active {
   background-color: #F3E7FF;
-  /* Very light purple */
+  /* 아주 연한 보라색 */
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -263,13 +280,13 @@
   overflow: hidden;
   background-color: #0D0D0D;
   border-radius: 24px;
-  margin-top: 24px;
+  margin-top: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contribution-container.expanded {
   max-height: 1000px;
-  /* Large enough to fit content */
+  /* 내용을 충분히 표시할 수 있는 크기 */
   opacity: 1;
   padding: 32px 40px;
   margin-top: 32px;
@@ -281,20 +298,32 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 10px;
-  /* Space for scrollbar if visible */
+  /* 스크롤바가 보일 경우를 대비한 여백 */
   scrollbar-width: none;
-  /* Firefox */
+  /* 파이어폭스 */
+
+  /* 가로 스크롤 필수 설정 */
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+  /* iOS 부드러운 스크롤 */
+  cursor: grab;
+  /* 스크롤 가능함 힌트 */
+}
+
+
+.contribution-track:active {
+  cursor: grabbing;
 }
 
 .contribution-track::-webkit-scrollbar {
   display: none;
-  /* Chrome/Safari */
+  /* 크롬/사파리 */
 }
 
 .contribution-card {
   flex: 0 0 420px;
   height: 260px;
-  /* Updated height as requested */
+  /* 요청에 따라 높이 수정됨 */
   background-color: #111111;
   border-radius: 24px;
   padding: 24px;
@@ -319,4 +348,205 @@
   line-height: 1.6;
   color: #EDE1FF;
   margin: 0;
+}
+
+/* Good Dog 섹션 전용 스타일 */
+.gooddog-section {
+  background-color: #000000;
+}
+
+/* Good Dog을 위한 반전 레이아웃 (이미지 왼쪽, 텍스트 오른쪽) */
+.reversed-layout {
+  flex-direction: row-reverse;
+  /* 기본이 row였으므로 reverse하면 순서가 바뀜 */
+}
+
+/* 
+   정렬을 돕기 위한 특정 래퍼 생성.
+   부모 요소의 flex-direction: row-reverse가 큰 틀을 잡지만,
+   세부적인 정렬을 위해 클래스 오버라이드가 필요함.
+   
+   이전 섹션의 레이아웃:
+   왼쪽: 텍스트
+   오른쪽: 이미지
+   
+   Good Dog의 목표 레이아웃:
+   왼쪽: 이미지
+   오른쪽: 텍스트
+   
+   따라서 이미지를 담은 div가 DOM상 먼저 오거나 order 속성을 사용해야 함.
+   HTML 구조상 .project-left(이미지)가 먼저, .project-right(텍스트)가 나중에 오도록 배치함.
+   
+   하지만 .project-left와 .project-right는 이전 섹션에서 사용된 일반적인 클래스명이며,
+   기존 스타일(왼쪽=텍스트, 오른쪽=이미지 정렬)과 충돌이 발생함.
+   
+   따라서 .gooddog-section에 대해 오버라이드가 필요함.
+*/
+
+.gooddog-section .project-container {
+  /* HTML 구조:
+       <div class="project-left"> -> 이미지 </div>
+       <div class="project-right"> -> 텍스트 </div>
+       
+       일반적인 row: 왼쪽=이미지, 오른쪽=텍스트.
+       DOM 순서를 시각적 순서(L->R)에 맞췄으므로 row-reverse는 필요 없음.
+    */
+  flex-direction: row;
+}
+
+.gooddog-section .project-left {
+  /* 
+     기존에는 텍스트 컨테이너였으나, 이제는 이미지를 담고 있음.
+     이미지를 중앙 정렬해야 함.
+  */
+  align-items: center;
+  /* 컬럼 내에서 이미지 중앙 정렬 */
+  justify-content: center;
+}
+
+.gooddog-section .project-right {
+  /* 
+     기존에는 이미지 컨테이너였으나, 이제는 텍스트를 담고 있음.
+     텍스트 덩어리의 정렬 일관성 필요.
+  */
+  align-items: flex-start;
+  /* 텍스트를 컬럼의 왼쪽으로 정렬 */
+  justify-content: center;
+  /* 수직 중앙 정렬 */
+}
+
+.gooddog-section .text-content-wrapper {
+  /* 텍스트 블록의 너비와 정렬 보장 */
+  width: 100%;
+  display: flex;
+  padding: 0 40px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 타이포그래피 오버라이드 */
+.gooddog-title {
+  color: #FFFFFF;
+}
+
+.gooddog-subtitle {
+  color: #E5FF7A;
+}
+
+.gooddog-divider {
+  background-color: #D4FF4A;
+}
+
+.gooddog-info .info-label {
+  color: #E5FF7A;
+  /* 강조색 */
+}
+
+.gooddog-info .info-value,
+.gooddog-info .info-row {
+  color: #F5F5F5;
+}
+
+/* 기술 스택 */
+.gooddog-tech .tech-tag {
+  background-color: #111111;
+  color: #F4FFB8;
+}
+
+/* 설명글 */
+.gooddog-desc {
+  color: #F8FFE0;
+  margin-top: 24px;
+}
+
+/* 썸네일 */
+.gooddog-thumbnail {
+  box-shadow: 0 0 80px rgba(180, 255, 0, 0.35);
+  /* 네온 라임 글로우 */
+}
+
+/* 버튼 */
+.gooddog-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.gooddog-btn:hover {
+  background-color: #F9FFF0;
+  /* 호버 시 약간의 틴트 효과 또는 이동 */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(180, 255, 0, 0.25);
+}
+
+.gooddog-section .view-contribution-btn.active {
+  background-color: #EEFFB3;
+  /* 활성 상태 틴트 */
+}
+
+
+@media (max-width: 1024px) {
+  .gooddog-section .project-container {
+    flex-direction: column;
+  }
+
+  .gooddog-section .project-left,
+  .gooddog-section .project-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .gooddog-section .text-content-wrapper {
+    align-items: center;
+  }
+}
+
+/* === RENDEZVIEW 상세 스타일 === */
+.rendezview-section {
+  background-color: #000000;
+}
+
+.rendezview-title {
+  color: #FFFFFF;
+}
+
+.rendezview-subtitle {
+  color: #EBC9A0;
+}
+
+.rendezview-divider {
+  background-color: #FFB88A;
+}
+
+.rendezview-info .info-label {
+  color: #FFB88A;
+}
+
+.rendezview-info .info-value,
+.rendezview-info .info-row {
+  color: #F5F5F5;
+}
+
+.rendezview-tech .tech-tag {
+  background-color: #111111;
+  color: #FFD8BB;
+}
+
+.rendezview-desc {
+  color: #FFE6C8;
+}
+
+.rendezview-thumbnail {
+  box-shadow: 0 0 80px rgba(255, 180, 140, 0.25);
+  /* 따뜻한 베이지/핑크 글로우 */
+}
+
+/* RendezView 버튼 (대부분 기본 상속, 틴트 오버라이드 가능) */
+.rendezview-btn:hover {
+  background-color: #FFF8F0;
+  box-shadow: 0 8px 20px rgba(255, 180, 140, 0.2);
+}
+
+.rendezview-section .view-contribution-btn.active {
+  background-color: #FFEADB;
 }

@@ -7,125 +7,110 @@ export class About {
   render() {
     return `
       <main class="page about-page">
-      <div class="page-title">WHO AM I</div>
+        <div class="page-title">WHO AM I</div>
+        
         <div class="about-container">
-          <!-- Center Section: Profile & Slogan -->
-          <section class="center-section">
-            <div class="slogan-container">
-              <h2 class="slogan">도전과 실행력이<br>저의 강점 입니다.</h2>
-            </div>
-            <div class="profile-image-container">
-              <img src="/src/assets/yoonjun.jpg" alt="Yoon Jun" class="profile-image" />
-            </div>
+          
+          <!-- Degree Section -->
+          <section class="about-section section-degree">
+            <div class="section-label">Degree</div>
+            <ul class="about-list">
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">광운대학교</span>
+                  <span class="item-period">2016.03 ~ 2024.08</span>
+                </div>
+                <div class="item-sub">동북아 문화산업 학부</div>
+              </li>
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">청원고등학교</span>
+                  <span class="item-period">2011.03 ~ 2014.02</span>
+                </div>
+              </li>
+            </ul>
           </section>
 
-          <!-- Top Left: Degree -->
-          <section class="quadrant top-left">
-            <div class="section-header">
-              <h3>Degree</h3>
-            </div>
-            <div class="content-list">
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">광운대학교</span>
-                  <span class="subtitle">(동북아 문화산업 학부)</span>
+          <!-- Work Section -->
+          <section class="about-section section-work">
+            <div class="section-label">Work</div>
+            <ul class="about-list">
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">인플루엔셜</span>
+                  <span class="item-period">2024.03 ~ 2024.06</span>
                 </div>
-                <div class="date">2016.03 ~ 2024.08</div>
-              </div>
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">청원고등학교</span>
-                </div>
-                <div class="date">2011.03 ~ 2014.02</div>
-              </div>
-            </div>
+                <div class="item-sub">디지털 컨텐츠 출판 (인턴)</div>
+                <ul class="item-bullets">
+                  <li>E-BOOK 데이터 가공 및 대시보드 등록</li>
+                  <li>구글 시트 활용 업무 분담 및 관리</li>
+                  <li>오디오북 파일 인코딩 및 등록</li>
+                </ul>
+              </li>
+            </ul>
           </section>
 
-          <!-- Top Right: Education -->
-          <section class="quadrant top-right">
-            <div class="section-header">
-              <h3>Education</h3>
+          <!-- Center Column: Slogan & Photo -->
+          <div class="col-center">
+            <div class="slogan-block">
+              <h2 class="main-slogan">도전과 실행력이<br>저의 강점입니다.</h2>
             </div>
-            <div class="content-list">
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">삼성SW·AI아카데미</span>
-                  <span class="subtitle highlight">(1620시간 교육)</span>
-                </div>
-                <div class="date">2024.07 ~ 2025.06</div>
-                <div class="sub-list">
-                  <div class="sub-item">교육</div>
-                  <ul class="detail-list">
-                    <li>Java, Spring, MVC 아키텍쳐, MySQL</li>
-                    <li>Vue.js, HTML, CSS, JavaScript</li>
-                    <li>기초 알고리즘 등 웹 프로그래밍 지식</li>
-                    <li>프로젝트형 실습 교육</li>
-                  </ul>
-                </div>
+            <div class="profile-block">
+              <div class="profile-card">
+                <img src="/src/assets/yoonjun.jpg" alt="Yoonjun Hong" class="profile-img" />
               </div>
+              <span class="profile-caption">Frontend Developer</span>
             </div>
+          </div>
+
+          <!-- Education Section -->
+          <section class="about-section section-education">
+            <div class="section-label">Education</div>
+            <ul class="about-list">
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">삼성SW·AI아카데미</span>
+                  <span class="item-period">2024.07 ~ 2025.06</span>
+                </div>
+                <div class="item-sub">1620시간 교육과정</div>
+                <ul class="item-bullets">
+                  <li>Java, Spring, MVC, MySQL</li>
+                  <li>Vue.js, HTML, CSS, JS</li>
+                  <li>알고리즘 및 웹 심화 과정</li>
+                  <li>팀 프로젝트 기반 실습</li>
+                </ul>
+              </li>
+            </ul>
           </section>
 
-          <!-- Bottom Left: Work -->
-          <section class="quadrant bottom-left">
-            <div class="section-header">
-              <h3>work</h3>
-            </div>
-            <div class="content-list">
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">인플루엔셜</span>
-                  <span class="subtitle highlight">(디지털 컨텐츠 출판)</span>
+          <!-- Project Section -->
+          <section class="about-section section-project">
+            <div class="section-label">Project</div>
+            <ul class="about-list">
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">트리버스</span>
+                  <span class="item-period">2024.04 ~ 2024.05</span>
                 </div>
-                <div class="date">2024.03 ~ 2024.06</div>
-                <div class="sub-list">
-                  <div class="sub-item">디지털 콘텐츠 관리</div>
-                  <ul class="detail-list square-bullets">
-                    <li>E-BOOK 데이터 가공 후 대시 보드에 등록</li>
-                    <li>근무자 전체에게 할당 된 업무를 구글 시트를 활용하여 분담</li>
-                    <li>오디오 북 파일을 전달 받아 인코딩 후 등록</li>
-                  </ul>
+                <div class="item-sub">엔터테인먼트 서비스</div>
+              </li>
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">굿독</span>
+                  <span class="item-period">2024.03 ~ 2024.04</span>
                 </div>
-              </div>
-            </div>
+                <div class="item-sub">구독 요금제 관리 서비스</div>
+              </li>
+              <li class="about-item">
+                <div class="item-main">
+                  <span class="item-title">랑데뷰</span>
+                  <span class="item-period">2025.01 ~ 2025.02</span>
+                </div>
+                <div class="item-sub">모임 장소 추천 서비스</div>
+              </li>
+            </ul>
           </section>
-
-          <!-- Bottom Right: Project -->
-          <section class="quadrant bottom-right">
-            <div class="section-header">
-              <h3>Project</h3>
-            </div>
-            <div class="content-list">
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">트리버스</span>
-                  <span class="subtitle highlight">(엔터테인먼트 서비스)</span>
-                </div>
-                <div class="date">2024.04 ~ 2024.05</div>
-              </div>
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">굿독</span>
-                  <span class="subtitle highlight">(구독 요금제 관리 서비스)</span>
-                </div>
-                <div class="date">2024.03 ~ 2024.04</div>
-              </div>
-              <div class="item">
-                <div class="item-header">
-                  <span class="bullet">•</span>
-                  <span class="title">랑데뷰</span>
-                  <span class="subtitle highlight">(모임 장소 추천 서비스)</span>
-                </div>
-                <div class="date">2025.01 ~ 2024.02</div>
-              </div>
-            </div>
-          </section>
+          
         </div>
 
         <!-- What I Like Section -->
@@ -134,21 +119,45 @@ export class About {
             <div class="like-grid">
               <!-- Grid Items (Hobby Images & Center Text) -->
               <!-- Row 1 -->
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby1.jpg" alt="Hobby 1" /></div>
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby2.jpg" alt="Hobby 2" /></div>
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby3.jpg" alt="Hobby 3" /></div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby1.jpg" alt="Hobby 1" />
+                <div class="hobby-overlay">Movie</div>
+              </div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby2.jpg" alt="Hobby 2" />
+                <div class="hobby-overlay">Talking</div>
+              </div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby3.jpg" alt="Hobby 3" />
+                <div class="hobby-overlay">Food</div>
+              </div>
               
               <!-- Row 2 -->
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby4.jpg" alt="Hobby 4" /></div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby4.jpg" alt="Hobby 4" />
+                <div class="hobby-overlay">Game</div>
+              </div>
               <div class="grid-item center-box">
                 <span class="like-text">Like</span>
               </div>
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby5.png" alt="Hobby 5" /></div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby5.png" alt="Hobby 5" />
+                <div class="hobby-overlay">Drawing</div>
+              </div>
               
               <!-- Row 3 -->
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby6.png" alt="Hobby 6" /></div>
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby7.png" alt="Hobby 7" /></div>
-              <div class="grid-item hobby-img"><img src="/src/assets/hobby8.jpg" alt="Hobby 8" /></div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby6.png" alt="Hobby 6" />
+                <div class="hobby-overlay">Cartoon</div>
+              </div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby7.png" alt="Hobby 7" />
+                 <div class="hobby-overlay">Running</div>
+              </div>
+              <div class="grid-item hobby-img">
+                <img src="/src/assets/hobby8.jpg" alt="Hobby 8" />
+                 <div class="hobby-overlay">Book</div>
+              </div>
             </div>
           </div>
         </section>
@@ -165,74 +174,110 @@ export class About {
             <!-- Skill Cards -->
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills1.png" alt="HTML" /></div>
-                <div class="card-back"><h3>HTML</h3><p>95%</p></div>
+                <div class="card-front"><img src="/src/assets/skills1.png" alt="Javascript" /></div>
+                <div class="card-back">
+                  <h3>Javascript</h3>
+                  <p class="skill-desc">웹 개발의 기본 문법과 DOM 조작, 비동기 처리 등 필수 기능을 활용해 인터랙티브한 UI를 구현할 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills2.png" alt="CSS" /></div>
-                <div class="card-back"><h3>CSS</h3><p>95%</p></div>
+                <div class="card-front"><img src="/src/assets/skills2.png" alt="Typescript" /></div>
+                <div class="card-back">
+                  <h3>Typescript</h3>
+                  <p class="skill-desc">TS의 타입 시스템을 활용해 안정적인 코드 작성이 가능하며, 프로젝트 규모가 커져도 유지보수성과 안정성을 확보할 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills3.png" alt="JS" /></div>
-                <div class="card-back"><h3>JS</h3><p>90%</p></div>
+                <div class="card-front"><img src="/src/assets/skills3.png" alt="React" /></div>
+                <div class="card-back">
+                  <h3>React</h3>
+                  <p class="skill-desc">컴포넌트 기반 개발과 훅(Hooks)을 이해하고 있으며, 상태 관리 및 재사용 가능한 UI 구조를 구현할 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills4.png" alt="React" /></div>
-                <div class="card-back"><h3>React</h3><p>85%</p></div>
+                <div class="card-front"><img src="/src/assets/skills4.png" alt="Vue" /></div>
+                <div class="card-back">
+                  <h3>Vue</h3>
+                  <p class="skill-desc">컴포넌트 구조와 반응형 시스템을 이해하며, 기본적인 Vue 생태계를 활용한 SPA 개발이 가능합니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
                 <div class="card-front"><img src="/src/assets/skills5.png" alt="Next.js" /></div>
-                <div class="card-back"><h3>Next.js</h3><p>80%</p></div>
+                <div class="card-back">
+                  <h3>Next.js</h3>
+                  <p class="skill-desc">라우팅, 서버 사이드 렌더링(SSR), 정적 생성(SSG)을 활용해 SEO 친화적이고 빠른 웹페이지를 만들 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills6.png" alt="TypeScript" /></div>
-                <div class="card-back"><h3>TS</h3><p>80%</p></div>
+                <div class="card-front"><img src="/src/assets/skills6.png" alt="Java" /></div>
+                <div class="card-back">
+                  <h3>Java</h3>
+                  <p class="skill-desc">객체지향 개념과 기본 문법을 활용해 안정적인 로직 구현이 가능하며, 백엔드 개발의 기초를 다졌습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills7.png" alt="Node.js" /></div>
-                <div class="card-back"><h3>Node.js</h3><p>75%</p></div>
+                <div class="card-front"><img src="/src/assets/skills7.png" alt="Spring Boot" /></div>
+                <div class="card-back">
+                  <h3>Spring Boot</h3>
+                  <p class="skill-desc">Rest API 구축, MVC 구조 이해, 기본적인 스프링 의존성 주입(DI) 구조를 활용해 서버 애플리케이션 개발이 가능합니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills8.png" alt="Python" /></div>
-                <div class="card-back"><h3>Python</h3><p>70%</p></div>
+                <div class="card-front"><img src="/src/assets/skills8.png" alt="MySQL" /></div>
+                <div class="card-back">
+                  <h3>MySQL</h3>
+                  <p class="skill-desc">데이터베이스 스키마 설계, 기본적인 CRUD 및 JOIN 쿼리를 작성해 필요한 데이터를 효율적으로 다룰 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills9.png" alt="Java" /></div>
-                <div class="card-back"><h3>Java</h3><p>70%</p></div>
+                <div class="card-front"><img src="/src/assets/skills9.png" alt="Figma" /></div>
+                <div class="card-back">
+                  <h3>Figma</h3>
+                  <p class="skill-desc">UI 컴포넌트 제작, 프로토타이핑, 오토 레이아웃을 활용해 실제 개발과 연계된 UI 설계를 수행할 수 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills10.png" alt="Spring" /></div>
-                <div class="card-back"><h3>Spring</h3><p>65%</p></div>
+                <div class="card-front"><img src="/src/assets/skills10.png" alt="Git / GitHub" /></div>
+                <div class="card-back">
+                  <h3>Git / GitHub</h3>
+                  <p class="skill-desc">브랜치 전략을 기반으로 버전 관리와 협업이 가능하며, GitHub를 통한 코드 리뷰 및 CI/CD 연동 경험이 있습니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills11.png" alt="MySQL" /></div>
-                <div class="card-back"><h3>MySQL</h3><p>75%</p></div>
+                <div class="card-front"><img src="/src/assets/skills11.png" alt="Jira" /></div>
+                <div class="card-back">
+                  <h3>Jira</h3>
+                  <p class="skill-desc">태스크 관리, 스프린트 운영, 이슈 트래킹 등 협업 기반 개발 프로세스에 익숙합니다.</p>
+                </div>
               </div>
             </div>
             <div class="skill-card">
               <div class="card-inner">
-                <div class="card-front"><img src="/src/assets/skills12.png" alt="AWS" /></div>
-                <div class="card-back"><h3>AWS</h3><p>60%</p></div>
+                <div class="card-front"><img src="/src/assets/skills12.png" alt="Photoshop" /></div>
+                <div class="card-back">
+                  <h3>Photoshop</h3>
+                  <p class="skill-desc">이미지 편집, 보정, 간단한 UI 리소스 제작이 가능하며 웹 디자인에 필요한 기본 툴 활용 능력을 갖추고 있습니다.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -246,7 +291,7 @@ export class About {
             </div>
             <div class="strength-right">
               <div class="strength-row">
-                <div class="strength-box">
+                <div class="strength-box strength-1">
                   <div class="sb-content sb-default">
                     <h3>Execution</h3>
   
@@ -258,7 +303,7 @@ export class About {
 실행 후 개선을 반복하며 품질을 완성하는 스타일입니다.</p>
                   </div>
                 </div>
-                <div class="strength-box">
+                <div class="strength-box strength-2">
                   <div class="sb-content sb-default">
                     <h3>Communication</h3>
                  
@@ -270,7 +315,7 @@ export class About {
 충돌보다는 조율을 우선하며 프로젝트 흐름을 안정적으로 유지합니다.</p>
                   </div>
                 </div>
-                <div class="strength-box">
+                <div class="strength-box strength-3">
                   <div class="sb-content sb-default">
                     <h3>Responsibility</h3>
                     
@@ -284,7 +329,7 @@ export class About {
                 </div>
               </div>
               <div class="strength-row">
-                <div class="strength-box">
+                <div class="strength-box strength-4">
                   <div class="sb-content sb-default">
                     <h3>Note-Taking Habit</h3>
                     
@@ -296,7 +341,7 @@ export class About {
 필요한 정보를 빠르게 찾아 활용할 수 있는 개인 지식 베이스를 유지합니다.</p>
                   </div>
                 </div>
-                <div class="strength-box">
+                <div class="strength-box strength-5">
                   <div class="sb-content sb-default">
                     <h3>Positivity</h3>
                     
@@ -308,7 +353,7 @@ export class About {
 긍정적인 태도는 협업 속도를 높이고, 새로운 시도를 두려워하지 않게 해줍니다.</p>
                   </div>
                 </div>
-                <div class="strength-box">
+                <div class="strength-box strength-6">
                   <div class="sb-content sb-default">
                     <h3>User-Centered Perspective</h3>
                     
@@ -330,6 +375,12 @@ export class About {
 
   init() {
     console.log('About 페이지 로드됨')
+
+    // Navbar 색상 변경 (검정색)
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.classList.add('navbar-dark');
+    }
 
     // Like Section Animation
     const likeSection = document.querySelector('.like-section');
@@ -381,8 +432,8 @@ export class About {
     this.skillsTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.skills-section',
-        start: 'top 80%',
-        end: 'center center',
+        start: 'top 99%',
+        end: 'top 30%',
         scrub: 1,
         markers: false
       }
@@ -405,6 +456,12 @@ export class About {
   }
 
   cleanup() {
+    // Navbar 색상 복구
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.classList.remove('navbar-dark');
+    }
+
     if (this.likeTl) this.likeTl.kill();
     if (this.skillsTl) this.skillsTl.kill();
 

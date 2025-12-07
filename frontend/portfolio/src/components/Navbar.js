@@ -1,11 +1,11 @@
 export class Navbar {
   constructor() {
     this.navItems = [
-      { href: '#/', label: 'Home'},
-      { href: '#/about', label: 'About Me'},
-      { href: '#/work', label: 'Work'},
+      { href: '#/', label: 'Home' },
+      { href: '#/about', label: 'About Me' },
+      { href: '#/work', label: 'Work' },
       { href: '#/guestbook', label: 'Guestbook' },
-      { href: '#/contact', label: 'Contact Me'}
+      { href: '#/contact', label: 'Contact Me' }
     ]
   }
 
@@ -33,13 +33,13 @@ export class Navbar {
         </button>
       </div>
     `
-    
+
     // 기존 네비게이션 바 제거 후 새로 추가
     const existingNav = document.querySelector('.navbar')
     if (existingNav) {
       existingNav.remove()
     }
-    
+
     document.body.insertBefore(navbar, document.body.firstChild)
     this.bindEvents()
   }
@@ -48,17 +48,26 @@ export class Navbar {
     // 모바일 메뉴 토글
     const toggle = document.querySelector('.navbar-toggle')
     const menu = document.querySelector('.navbar-menu')
-    
+    const links = document.querySelectorAll('.navbar-link')
+
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         menu.classList.toggle('active')
         toggle.classList.toggle('active')
       })
+
+      // 링크 클릭 시 메뉴 닫기 추가
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active')
+          toggle.classList.remove('active')
+        })
+      })
     }
 
     // 활성 링크 표시
     this.updateActiveLink()
-    
+
     // 해시 변경 시 활성 링크 업데이트
     window.addEventListener('hashchange', () => this.updateActiveLink())
   }
@@ -66,7 +75,7 @@ export class Navbar {
   updateActiveLink() {
     const currentHash = window.location.hash || '#/'
     const links = document.querySelectorAll('.navbar-link')
-    
+
     links.forEach(link => {
       link.classList.remove('active')
       if (link.getAttribute('data-route') === currentHash) {
