@@ -227,54 +227,66 @@ export class Home {
 
   init() {
     // 1. Slogan Section Animations (Timeline)
-    this.sloganTl = gsap.timeline()
+    // 1. Slogan Section Animations (Timeline) - Cute Pop Style
+    this.sloganTl = gsap.timeline({
+      defaults: { ease: "back.out(1.7)" } // Bouncy default
+    });
 
-    // Initial setup for slogan words
-    gsap.set('.slogan-word', { opacity: 0, y: 20 });
-    gsap.set('.slogan-container', { opacity: 1 }); // Ensure container is visible
+    // Initial setup
+    gsap.set('.slogan-word', { opacity: 0, scale: 0.5, y: 30, filter: 'blur(5px)' });
+    gsap.set('.character-image', { opacity: 0, scale: 0, rotation: -10 });
+    gsap.set('.scroll-indicator', { opacity: 0, y: -10 });
 
-    this.sloganTl.to('.character-image', {
-      opacity: 1,
-      duration: 1.5,
-      ease: 'power2.out',
-      onStart: () => {
-        gsap.fromTo('.character-image',
-          { filter: 'drop-shadow(0 0 0 rgba(255,255,255,0)) brightness(0)' },
-          {
-            filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.6)) brightness(1.2)',
-            duration: 1.5,
-            ease: 'rough({ template: none.out, strength: 1, points: 20, taper: "none", randomize: true, clamp: false })'
-          }
-        )
-      }
-    })
+    // Begin Sequence
+    this.sloganTl
+      // 1. Cat Pop In (Squash & Stretch feel)
       .to('.character-image', {
-        y: -15,
+        opacity: 1,
+        scale: 1.1, // Overshoot
+        rotation: 0,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.5)"
+      })
+      .to('.character-image', {
+        scale: 1, // Settle
+        duration: 0.4,
+        ease: "power2.out"
+      }, "-=0.2")
+
+      // Cat Idle Wiggle (Loop) - Distinct from entrance
+      .to('.character-image', {
+        rotation: 3,
         duration: 2,
         repeat: -1,
         yoyo: true,
-        ease: 'sine.inOut'
-      }, '-=0.5')
-      .to('.character-image', {
-        filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.3)) brightness(1)',
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
-      }, '<')
-      // Animate words sequentially
+        ease: "sine.inOut"
+      }, "-=0.2")
+
+      // 2. Text Pop Sequence (Staggered & Bouncy)
       .to('.slogan-word', {
         opacity: 1,
+        scale: 1,
         y: 0,
+        filter: 'blur(0px)',
         duration: 0.8,
-        stagger: 0.6, // Slow stagger as requested
-        ease: 'power3.out'
-      }, '-=1.0')
+        stagger: 0.15, // Playful ripple
+        ease: "back.out(2)" // Strong Pop
+      }, "-=1.5") // Overlap significantly with cat
+
+      // 3. Scroll Indicator (Soft Pulse)
       .to('.scroll-indicator', {
-        opacity: 0.7,
+        opacity: 1,
+        y: 0,
         duration: 1,
-        delay: 0.5
-      })
+        ease: "power2.out"
+      }, "-=0.5")
+      .to('.scroll-indicator', {
+        y: 5,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
 
     // Section 3: Me Burst Animation
     const meSection = document.querySelector('.me-burst');
@@ -514,24 +526,42 @@ export class Home {
 
   cleanup() {
     // Kill GSAP animations
-    if (this.sloganTl) this.sloganTl.kill();
-    if (this.meBurstTween) this.meBurstTween.kill();
-    if (this.meBurstTrigger) this.meBurstTrigger.kill();
-    if (this.introTl) this.introTl.kill();
-    if (this.skillsTl) this.skillsTl.kill();
+    if (this.sloganTl) {
+      this.sloganTl.kill();
+      this.sloganTl = null;
+    }
+    if (this.meBurstTween) {
+      this.meBurstTween.kill();
+      this.meBurstTween = null;
+    }
+    if (this.meBurstTrigger) {
+      this.meBurstTrigger.kill();
+      this.meBurstTrigger = null;
+    }
+    if (this.introTl) {
+      this.introTl.kill();
+      this.introTl = null;
+    }
+    if (this.skillsTl) {
+      this.skillsTl.kill();
+      this.skillsTl = null;
+    }
 
     // Remove Event Listeners
-    if (this.nextBtn && this.handleNext) {
+    if (this.nextBtn) {
       this.nextBtn.removeEventListener('click', this.handleNext);
     }
-    if (this.prevBtn && this.handlePrev) {
+    if (this.prevBtn) {
       this.prevBtn.removeEventListener('click', this.handlePrev);
     }
 
-    // Reset body styles if me-burst changed them
-    gsap.set('body', { backgroundColor: '#0a0a0a', color: '#f5f5f5' });
+    // Reset body styles safely
+    gsap.set('body', { clearProps: "all" });
+    // Or if you want to enforce specific defaults:
+    // gsap.set('body', { backgroundColor: '#0a0a0a', color: '#f5f5f5' });
 
-    // Clear ScrollTriggers to be safe
+    // Clear ScrollTriggers created on this page
     ScrollTrigger.getAll().forEach(t => t.kill());
+    ScrollTrigger.refresh();
   }
 }

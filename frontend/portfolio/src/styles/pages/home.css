@@ -147,8 +147,18 @@ body {
   background: linear-gradient(to bottom, var(--text-secondary), transparent);
 }
 
+/* Cute / Pop Style Helpers */
+.pastel-glow {
+  text-shadow: 0 0 10px rgba(255, 183, 178, 0.4), 0 0 20px rgba(181, 234, 215, 0.2);
+}
+
+.pop-depth {
+  filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.2));
+}
+
 /* Animations */
 @keyframes drawLine {
+
   to {
     stroke-dashoffset: 0;
   }
@@ -271,78 +281,121 @@ body {
 /* =========================================
    Section 2: Self-Introduction
    ========================================= */
+/* =========================================
+   Section 2: Self-Introduction (Redesign)
+   ========================================= */
 .intro-section {
   height: 100vh;
-  /* Full viewport height for pinning */
   background-color: #0a0a0a;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* Reset margins to avoid layout issues with pinning */
   margin: 0;
-  padding: 100px 0;
-  /* Add padding if needed */
+  padding: 0;
+  position: relative;
 }
 
 .intro-sticky-wrapper {
-  font-family: 'Pretendard';
-  font-size: 80px;
-  line-height: 1.2;
-  /* Remove CSS sticky, let GSAP handle it */
+  font-family: 'Pretendard', sans-serif;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .intro-sticky-wrapper .mask {
   display: block;
+  width: 100%;
 }
 
+.intro-sticky-wrapper .mask .text {
+  display: block;
+  line-height: 1.1;
+}
+
+/* Base style for all lines */
 .intro-sticky-wrapper .mask .text span {
-  -webkit-text-fill-color: rgba(22, 22, 22, 0.1);
+  display: inline-block;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.05);
+  /* Softer inactive state */
   -webkit-background-clip: text;
   background-clip: text;
   background-repeat: no-repeat;
   background-size: 100% 0%;
-  /* Start with 0 height */
+  /* Animation Start State */
   background-position: bottom;
-  /* Anchor to bottom */
+
+  /* Typography defaults */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: transform 0.3s ease;
+  padding: 0.2rem 0;
+  /* Add slight breathing room */
 }
 
-/* Individual Gradients - Vertical */
+/* Hover effect for interactivity */
+.intro-sticky-wrapper .mask .text span:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
+
+/* --- Individual Lines & Pastel Colors --- */
+
+/* 1. 안녕하십니까! (Greeting) - Neutral */
 .intro-sticky-wrapper .mask .text .line-1 {
-  background-image: linear-gradient(to top, #ffffff, #ffffff);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  background-image: linear-gradient(to top, #f0f0f0, #f0f0f0);
 }
 
+/* 2. 재밌고 (Fun) - Pastel Pink */
 .intro-sticky-wrapper .mask .text .line-2 {
-  background-image: linear-gradient(to top, #eb2424, #eb2424);
-  /* Red */
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 800;
+  background-image: linear-gradient(to top, #FFB7B2, #FFB7B2);
+  letter-spacing: -0.04em;
 }
 
+/* 3. 흥미로운 (Interesting) - Pastel Mint */
 .intro-sticky-wrapper .mask .text .line-3 {
-  background-image: linear-gradient(to top, #2be268, #2be268);
-  /* Green */
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 800;
+  background-image: linear-gradient(to top, #B5EAD7, #B5EAD7);
+  letter-spacing: -0.04em;
 }
 
+/* 4. 경험을 선사하는 (Experience) - Pastel Peach */
 .intro-sticky-wrapper .mask .text .line-4 {
-  background-image: linear-gradient(to top, #ffd700, #ffd700);
-  /* Yellow */
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  background-image: linear-gradient(to top, #FFDAC1, #FFDAC1);
 }
 
+/* 5. 개발자 (Developer) - Pastel Lavender */
 .intro-sticky-wrapper .mask .text .line-5 {
-  background-image: linear-gradient(to top, #4da6ff, #4da6ff);
-  /* Blue */
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  background-image: linear-gradient(to top, #E0BBE4, #E0BBE4);
 }
 
+/* 6. Name: Yoon Jun - Vibrant Pastel Gradient */
 .intro-sticky-wrapper .mask .text .line-6-name {
-  background-image: linear-gradient(to top, #c1ffff, #c1ffff);
-  /* font-family: 'cafe24decoshadow'; */
-  /* Teal/Cyan */
+  font-size: clamp(4rem, 9vw, 8rem);
+  font-weight: 900;
+  background-image: linear-gradient(to top, #A0E7E5, #957DAD);
+  /* Cyan to Purple */
+  text-transform: uppercase;
+  margin-top: 10px;
 }
 
+/* 7. Suffix: 입니다. - Delicate Neutral */
 .intro-sticky-wrapper .mask .text .line-6-suffix {
-  background-image: linear-gradient(to top, #ffffff, #ffffff);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  background-image: linear-gradient(to top, #cccccc, #cccccc);
 }
 
 /* Skills Section */

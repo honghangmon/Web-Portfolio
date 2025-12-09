@@ -253,10 +253,11 @@ export class Work {
 
   init() {
     // 새로운 ScrollTrigger를 생성하기 전에 기존의 모든 트리거를 제거하여 충돌을 방지합니다 (안전 장치)
-    ScrollTrigger.getAll().forEach(t => t.kill());
+    // ScrollTrigger.getAll().forEach(t => t.kill()); // This is now handled in cleanup(), but good safety here too if needed, though safer to rely on instance cleanup.
+    // Better practice: ensure clean state via global refresh if needed, but rely on router calling cleanup.
 
+    // 1. Setup Timelines immediately for structure
     // --- 히어로 섹션 애니메이션 (고정 및 축소 효과) ---
-    // 스크롤 시 히어로 섹션이 상단에 고정되면서 타이틀과 라인이 작아지는 효과를 구현합니다.
     this.heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.work-hero',
@@ -277,9 +278,8 @@ export class Work {
       '<'
     );
 
-    // 타이틀 애니메이션: 스크롤에 따라 크기가 줄어들고(0.4배) 네비게이션 바 쪽으로 위로(-40px) 이동합니다.
     this.heroTl.fromTo('.work-title',
-      { scale: 1, y: 0, transformOrigin: 'center top' }, // 상단 중앙을 기준으로 축소
+      { scale: 1, y: 0, transformOrigin: 'center top' },
       {
         scale: 0.3, y: 45,
         ease: 'none'
@@ -287,7 +287,6 @@ export class Work {
       '<'
     );
 
-    // 라인 애니메이션: 타이틀과 함께 위로 이동하여 레이아웃의 균형을 유지합니다.
     this.heroTl.fromTo('.line',
       { y: 0 },
       { y: -20, ease: 'none' },
@@ -295,22 +294,41 @@ export class Work {
     );
 
     // --- 이벤트 바인딩 ---
-    // 상세 기여 내용(Contribution) 토글 버튼과 가로 스크롤 이벤트를 연결합니다.
     this.bindEvents();
+
+    // --- Critical Fix: Handle Image Loading & Refresh ---
+    // Images affecting layout height must be loaded before ScrollTrigger calculates positions
+    this.waitForImages().then(() => {
+      ScrollTrigger.refresh();
+      console.log('Work Page: All images loaded, ScrollTrigger refreshed');
+    });
+  }
+
+  // New Helper: Wait for images to load
+  waitForImages() {
+    const images = document.querySelectorAll('.work-page img');
+    const promises = Array.from(images).map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(resolve => {
+        img.onload = resolve;
+        img.onerror = resolve; // Resolve even on error to avoid blocking
+      });
+    });
+    return Promise.all(promises);
   }
 
   bindEvents() {
     const toggleBtns = document.querySelectorAll('.view-contribution-btn');
-    const tracks = document.querySelectorAll('.contribution-track');
+    // const tracks = document.querySelectorAll('.contribution-track'); // Unused
 
     toggleBtns.forEach(btn => {
-      // 현재 클릭된 버튼과 연관된 가장 가까운 contribution 컨테이너를 탐색합니다.
       const parentArea = btn.closest('.project-contribution-area');
       const container = parentArea ? parentArea.querySelector('.contribution-container') : null;
 
       if (btn && container) {
         btn.onclick = () => {
           const isExpanded = container.classList.contains('expanded');
+
           if (isExpanded) {
             container.classList.remove('expanded');
             btn.classList.remove('active');
@@ -318,18 +336,31 @@ export class Work {
             container.classList.add('expanded');
             btn.classList.add('active');
           }
+          // Refresh ScrollTrigger when layout changes (accordion expands/collapses)
+          // Give CSS transition time to finish (0.5s)
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 550);
         };
       }
     });
-
-
   }
 
   cleanup() {
+    // 1. Kill main timeline
     if (this.heroTl) {
       this.heroTl.kill();
       this.heroTl = null;
     }
+
+    // 2. Kill ALL ScrollTriggers created in this context
+    // Ideally we track them, but strict SPA cleaning often needs this:
     ScrollTrigger.getAll().forEach(t => t.kill());
+
+    // 3. Reset any GSAP props set on elements (optional but recommended if issues persist)
+    // gsap.set('.work-hero, .work-title, .line', { clearProps: "all" });
+
+    // 4. Force refresh to ensure strictly clean slate for next page
+    ScrollTrigger.refresh();
   }
 }
